@@ -44,11 +44,11 @@ function dataReceived(csv) {
 }
 
 function showCurrentFront() {
-    $("#p-csv-values").text(g_values[row][0])
+    $("#p-csv-values").text(g_values[0][0] + ": " + g_values[row][0])
 }
 
 function showCurrentBack() {
-    $("#p-csv-values").text(g_values[row][1])
+    $("#p-csv-values").text(g_values[0][1] + ": " + g_values[row][1])
 }
 
 function loadCsvFailed() {
