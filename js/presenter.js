@@ -28,7 +28,7 @@ function flip() {
 }
 
 function next() {
-    if(row < g_values.length)
+    if(row < g_values.length-1)
         row++;
     else
         row = 1
