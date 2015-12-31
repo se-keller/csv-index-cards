@@ -8,7 +8,10 @@
   	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
   	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
-	<script src="js/csv-splitter.js"></script>
+	<script src="js/CsvSplitter.js"></script>
+	<script src="js/Card.js"></script>
+	<script src="js/Deck.js"></script>
+	<script src="js/DeckUnmarshaller.js"></script>
 	<script src="js/presenter.js"></script>
 </head>
 
@@ -35,7 +38,7 @@
 	  </div>
 
 	  <div data-role="main" class="ui-content">
-  		<h1 align="center" id="card-value-front"></h1>
+  		<h1 align="center" id="card-front-value"></h1>
   		<button id="button-show-card-back" type="button" >Flip</button>
   		<button id="button-next" type="button" >Next</button>
 	  </div>
@@ -51,7 +54,7 @@
 	  </div>
 
 	  <div data-role="main" class="ui-content">
-  		<h1 align="center" size= "30" id="card-value-back"></h1>
+  		<h1 align="center" size= "30" id="card-back-value"></h1>
   		<button id="button-show-card-front" type="button" >Flip</button>
 	  </div>
 
