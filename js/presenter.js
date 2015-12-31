@@ -3,27 +3,19 @@ var row = 1;
 var flipped = false;
 
 $(document).ready(function() {
-    disableFlipAndNext()
     $("#button-load-csv").click(function() {
         $.ajax({
             type: "GET",
             url: $('#input-csv-url').val(),
             dataType: "text",
-            success: function(data) {dataReceived(data)},
-            error: loadCsvFailed()
+            success: function(data) {dataReceived(data)}
         }) 
     })
-    $("#button-flip").click(function() {flip()})
+    $("#button-show-card-front").click(function() {showCurrentFront()})
+    $("#button-show-card-back").click(function() {showCurrentBack()})
     $("#button-next").click(function() {next()})
 });
 
-function flip() {
-    if(flipped) {
-        showCurrentFront()
-    } else {
-        showCurrentBack()
-    }
-}
 
 function next() {
     if(row < g_values.length-1)
@@ -34,33 +26,22 @@ function next() {
 }
 
 function dataReceived(csv) {
-    disableFlipAndNext()
     g_values = splitCsv(csv)
     row = 1
     showCurrentFront()
-    enableFlipAndNext()
 }
 
 function showCurrentFront() {
-    $("#p-csv-values").text(g_values[0][0] + ": " + g_values[row][0])
-    flipped = false
+    $("#card-value-front").text(g_values[row][0])
+    $("#card-front-label").text(g_values[0][0])
+    $.mobile.changePage( "#card-front", { transition: "flip", changeHash: true });
 }
 
 function showCurrentBack() {
-    $("#p-csv-values").text(g_values[0][1] + ": " + g_values[row][1])
-    flipped = true
+    $("#card-value-back").text(g_values[row][1])
+    $("#card-back-label").text(g_values[0][1])
+    $.mobile.changePage( "#card-back", { transition: "flip", changeHash: false });
 }
 
-function loadCsvFailed() {
-    $("#p-csv-values").text("Could not load")
-    disableFlipAndNext();
-}
 
-function disableFlipAndNext() {
-    $("#button-next").prop('disabled', true)
-    $("#button-flip").prop('disabled', true)
-}
-function enableFlipAndNext() {
-    $("#button-next").prop('disabled', false)
-    $("#button-flip").prop('disabled', false)
-}
+
