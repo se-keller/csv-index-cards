@@ -15,6 +15,7 @@ $(document).ready(function() {
     $("#button-show-card-back").click(function() {showCurrentBack()})
     $("#button-next").click(function() {next()})
     $("#button-shuffel-deck").click(function() {shuffelDeck()})
+    $("#button-swap-deck").click(function() {swapDeck()})
 });
 
 
@@ -43,6 +44,11 @@ function showCurrentBack() {
 function shuffelDeck() {
     deck.shuffel()
     next()
+}
+
+function swapDeck() {
+    deck.swap()
+    showCurrentFront()
 }
 
 function errorLoadingCsv() {

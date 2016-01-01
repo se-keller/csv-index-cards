@@ -4,6 +4,7 @@ describe("Deck", function() {
 
   beforeEach(function() {
     deck = new Deck()
+    deck.setLabels("Question", "Answer")
     card = new Card("question", "answer")
     deck.add(card)
   });
@@ -28,11 +29,18 @@ describe("Deck", function() {
   });
 
   it("can declare label for front a back of all cards", function() {
-    deck.setLabels("Question", "Answer")
-
     expect(deck.getFrontLabel()).toEqual("Question")
     expect(deck.getBackLabel()).toEqual("Answer")
   });
+
+  it("can swap the Question and Answer direction", function() {
+    deck.swap()
+
+    expect(deck.getFrontLabel()).toEqual("Answer")
+    expect(deck.getBackLabel()).toEqual("Question")
+    expect(deck.getNextCard().getFront()).toEqual("answer")
+    expect(deck.getNextCard().getBack()).toEqual("question")
+  });  
 
 
 });

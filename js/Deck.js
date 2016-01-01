@@ -31,4 +31,13 @@ function Deck () {
     this.shuffel = function() {
     	this.cards = this.shuffler.shuffel(this.cards)
     }
+
+    this.swap = function() {
+    	var temp = this.frontLabel
+    	this.frontLabel = this.backLabel
+    	this.backLabel = temp
+    	for(var i = 0; i < this.cards.length; i++) {
+    		this.cards[i].swap()
+    	}
+    }
 }
