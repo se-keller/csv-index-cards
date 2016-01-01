@@ -3,6 +3,7 @@ function Deck () {
     this.currentCard = 0;
     this.frontLabel = "Question"
     this.backLabel = "Answer"
+    this.shuffler = new ArrayShuffler(Math)
 
     this.add = function(card) {
         this.cards.push(card)
@@ -25,5 +26,9 @@ function Deck () {
 
     this.getBackLabel = function() {
     	return this.backLabel
+    }
+
+    this.shuffel = function() {
+    	this.cards = this.shuffler.shuffel(this.cards)
     }
 }
