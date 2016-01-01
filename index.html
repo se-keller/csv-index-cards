@@ -34,6 +34,10 @@
 	  	
 
 	  <div data-role="main" class="ui-content">
+	  		<div id="popup-error-loading-csv" data-role="popup">
+	  			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+				<p>Could not load csv. Maybe the url is wrong? Or the csv is not readable.<p>
+			</div>
 			<input type="url" data-clear-btn="true" name="CSV URL" id="input-csv-url" value="test/resources/example.csv">
 	  		<a  id="button-load-csv" type="button" data-role="button">Load csv</a>
 	  </div>
@@ -57,8 +61,8 @@
 
 	  <div data-role="main" class="ui-content">
   		<h1 align="center" id="card-front-value"></h1>
-  		<button id="button-show-card-back" type="button" >Flip</button>
-  		<button id="button-next" type="button" >Next</button>
+  		<a id="button-show-card-back" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-recycle ui-btn-icon-right">Flip</a>
+  		<a id="button-next" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right">Next</a>
 	  </div>
 	</div>
 
@@ -71,7 +75,7 @@
 
 	  <div data-role="main" class="ui-content">
   		<h1 align="center" size= "30" id="card-back-value"></h1>
-  		<button id="button-show-card-front" type="button" >Flip</button>
+  		<a id="button-show-card-front" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-recycle ui-btn-icon-right">Flip</a>
 	  </div>
 
 	  

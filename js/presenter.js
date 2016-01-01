@@ -7,7 +7,8 @@ $(document).ready(function() {
             type: "GET",
             url: $('#input-csv-url').val(),
             dataType: "text",
-            success: function(data) {dataReceived(data)}
+            success: function(data) {dataReceived(data)},
+            error: function() {errorLoadingCsv()}
         }) 
     })
     $("#button-show-card-front").click(function() {showCurrentFront()})
@@ -42,5 +43,9 @@ function showCurrentBack() {
 function shuffelDeck() {
     deck.shuffel()
     next()
+}
+
+function errorLoadingCsv() {
+    $( "#popup-error-loading-csv" ).popup("open")
 }
 
