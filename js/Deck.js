@@ -30,6 +30,7 @@ function Deck () {
 
     this.shuffel = function() {
     	this.cards = this.shuffler.shuffel(this.cards)
+    	this.currentCard = 0
     }
 
     this.swap = function() {
@@ -39,5 +40,13 @@ function Deck () {
     	for(var i = 0; i < this.cards.length; i++) {
     		this.cards[i].swap()
     	}
+    }
+
+    this.size = function() {
+    	return this.cards.length
+    }
+
+    this.currentProgress = function() {
+    	return this.currentCard
     }
 }

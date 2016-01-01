@@ -1,5 +1,6 @@
 var deck
 var currentCard
+var progressbarCreated = false;
 
 $(document).ready(function() {
     $("#button-load-csv").click(function() {
@@ -18,10 +19,27 @@ $(document).ready(function() {
     $("#button-swap-deck").click(function() {swapDeck()})
 });
 
+$(document).on('pagebeforeshow', '#card-front', function(){ 
+    if(!progressbarCreated) {
+        $('<input>').appendTo('#div-slider-progress').attr({'name':'slider','id':'slider-progress','data-highlight':'true','min':'0','max':'100','value':'50','type':'range'}).slider({
+            create: function( event, ui ) {
+                $(this).parent().find('input').hide();
+                $(this).parent().find('input').css('margin-left','-9999px'); // Fix for some FF versions
+                $(this).parent().find('.ui-slider-track').css('margin','0 3px 0 3px');
+                $(this).parent().find('.ui-slider-handle').hide();
+            }
+        }).slider("refresh");    
+    } 
+    progressbarCreated = true     
+
+});
 
 function next() {
     currentCard = deck.getNextCard()
     showCurrentFront()
+    $("#slider-progress").attr("max", deck.size())
+    $("#slider-progress").val(deck.currentProgress())
+    $("#slider-progress").slider("refresh");
 }
 
 function dataReceived(csv) {
