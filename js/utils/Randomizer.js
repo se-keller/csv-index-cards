@@ -7,6 +7,7 @@ var Randomizer = function(seed) {
 
 	this.random = function() {
 		if(this.hasSeed) {
+			// Algorithm found: http://stackoverflow.com/revisions/19303725/2
     		var x = Math.sin(this.seed++) * 10000;
     		return x - Math.floor(x);
     	}

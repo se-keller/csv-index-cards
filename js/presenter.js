@@ -19,6 +19,7 @@ $(document).ready(function() {
     $("#button-swap-deck").click(function() {swapDeck()})
 });
 
+//Algorithm found: http://stackoverflow.com/revisions/16732728/2
 $(document).on('pagebeforeshow', '#card-front', function(){ 
     if(!progressbarCreated) {
         $('<input>').appendTo('#div-slider-progress').attr({'name':'slider','id':'slider-progress','data-highlight':'true','min':'0','max':'100','value':'50','type':'range'}).slider({
