@@ -1,102 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8"/>
-	<title>Csv Index Cards</title>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="apple-touch-startup-image" href="images/icon.png" />
-	<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-	<link rel="icon" href="images/favicon.png" type="image/png" />
-	<link rel="apple-touch-icon" href="images/icon.png" />
-
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-	
-	<script src="js/utils/ArrayShuffler.js"></script>
-	<script src="js/utils/CsvSplitter.js"></script>
-	<script src="js/Card.js"></script>
-	<script src="js/Deck.js"></script>
-	<script src="js/DeckUnmarshaller.js"></script>
-	<script src="js/presenter.js"></script>
-</head>
-
-<body>
-
-	<div data-role="page" id="loadcsv">
-	  <div data-role="header">
-	    <h1>CSV Index Cards</h1>
-	  </div>
-
-	  	
-
-	  <div data-role="main" class="ui-content">
-	  		<div id="popup-error-loading-csv" data-role="popup">
-	  			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-				<p>Could not load csv. Maybe the url is wrong? Or the csv is not readable.<p>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Csv Index Cards</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="apple-touch-startup-image" href="images/icon.png" />
+		<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+		<link rel="icon" href="images/favicon.png" type="image/png" />
+		<link rel="apple-touch-icon" href="images/icon.png" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+		<script src="js/utils/ArrayShuffler.js"></script>
+		<script src="js/utils/CsvSplitter.js"></script>
+		<script src="js/Card.js"></script>
+		<script src="js/Deck.js"></script>
+		<script src="js/DeckUnmarshaller.js"></script>
+		<script src="js/presenter.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="loadcsv">
+			<div data-role="header">
+				<h1>CSV Index Cards</h1>
 			</div>
-			<input type="url" data-clear-btn="true" name="CSV URL" id="input-csv-url" value="test/resources/example.csv">
-	  		<a  id="button-load-csv" type="button" data-role="button">Load csv</a>
-	  </div>
-
-	  
-	</div> 
-
-	<div data-role="page" id="card-front">
-	  <div data-role="panel" id="menu" data-position="right">
-	  	<ul data-role="listview" data-inset="false">
-      		<li><a  id="button-shuffel-deck" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
-      		<li><a  id="button-swap-deck" type="button" data-role="button" data-rel="close">Swap deck</a></li>
-    	</ul>	  		
-  	  </div>
-	  <div data-role="header">
-	  	<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
-		<a href="#menu" 
-			class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-right ui-btn-icon-notext">Menu</a>
-	    <h1 id="card-front-label">CSV Index Cards</h1>
-	  </div>
-
-	  <div data-role="main" class="ui-content">
-	  	
-  		<h1 align="center" id="card-front-value"></h1>
-
-
-
-  		<fieldset class="ui-grid-a">
-  			<div class="ui-block-a">
-  				<a id="button-show-card-back" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
-  			</div>
-  			<div class="ui-block-b">
-  				<a id="button-next" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right">Next</a>
-  			</div>
-		</fieldset>
-	  </div>
-
-	  <div data-role="footer" data-position="fixed"> 
-		<div id ="div-slider-progress"></div>
-	  </div>
-
-	</div>
-
-	<div data-role="page" id="card-back">	  
-	  <div data-role="header">
-	  	<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
-	    <h1 id="card-back-label">CSV Index Cards</h1>
-	  </div>
-
-	  <div data-role="main" class="ui-content">
-  		<h1 align="center" size= "30" id="card-back-value"></h1>
-  		<a id="button-show-card-front" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
-	  </div>
-
-	  
-	</div>
-  
-</body>
+			<div data-role="main" class="ui-content">
+				<div id="popup-error-loading-csv" data-role="popup">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<p>Could not load csv. Maybe the url is wrong? Or the csv is not readable.
+					<p>
+				</div>
+				<input type="url" data-clear-btn="true" name="CSV URL" id="input-csv-url" value="test/resources/example.csv">
+				<a  id="button-load-csv" type="button" data-role="button">Load csv</a>
+			</div>
+		</div>
+		<div data-role="page" id="card-front">
+			<div data-role="panel" id="menu" data-position="right">
+				<ul data-role="listview" data-inset="false">
+					<li><a  id="button-shuffel-deck" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
+					<li><a  id="button-swap-deck" type="button" data-role="button" data-rel="close">Swap deck</a></li>
+				</ul>
+			</div>
+			<div data-role="header">
+				<a href="#" data-rel="back"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
+				<a href="#menu" 
+					class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-right ui-btn-icon-notext">Menu</a>
+				<h1 id="card-front-label">CSV Index Cards</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<h1 align="center" id="card-front-value"></h1>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="button-show-card-back" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
+					</div>
+					<div class="ui-block-b">
+						<a id="button-next" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right">Next</a>
+					</div>
+				</fieldset>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div id ="div-slider-progress"></div>
+			</div>
+		</div>
+		<div data-role="page" id="card-back">
+			<div data-role="header">
+				<a href="#" data-rel="back"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
+				<h1 id="card-back-label">CSV Index Cards</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<h1 align="center" size= "30" id="card-back-value"></h1>
+				<a id="button-show-card-front" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
+			</div>
+		</div>
+	</body>
 </html>
