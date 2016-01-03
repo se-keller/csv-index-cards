@@ -33,6 +33,11 @@ describe("Deck", function() {
     expect(deck.getBackLabel()).toEqual("Answer")
   });
 
+  it("can calculate the number of cards in the deck", function() {
+    deck.add(new Card("question2", "answer2"))
+    expect(deck.size()).toEqual(2)
+  });
+
   it("can swap the Question and Answer direction", function() {
     deck.swap()
 
@@ -40,7 +45,12 @@ describe("Deck", function() {
     expect(deck.getBackLabel()).toEqual("Question")
     expect(deck.getNextCard().getFront()).toEqual("answer")
     expect(deck.getNextCard().getBack()).toEqual("question")
-  });  
+  });
 
+  it("can calculate the number of cards already drawn", function() {
+    deck.add(new Card("question2", "answer2"))
+    deck.getNextCard()
+    expect(deck.currentProgress()).toEqual(1)
+  });
 
 });
