@@ -28,7 +28,7 @@ describe("DeckUnmarshaller", function() {
           done()
         }, 
         function() {
-          fail("Should not raise an error while converting from csv-url")
+          fail("Should not raise an error while converting from csv URL")
           done()
         }
       )
@@ -45,7 +45,7 @@ describe("DeckUnmarshaller", function() {
         unmarshaller.fromCsvUrl(
         "unreadable url", 
         function(data) {
-          fail("Should not convert unreadable csv-url")
+          fail("Should not convert unreadable csv URL")
           done()      
         }, 
         function() {
