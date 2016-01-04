@@ -13,4 +13,16 @@ var DeckUnmarshaller = function() {
 	this.fromCsv = function(csv) {
 		return this.fromArray(new CsvSplitter().split(csv))
 	}
+
+	this.fromCsvUrl = function(url, successCallback, errorCallback) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "text",
+            success: function(data) {
+                successCallback(new DeckUnmarshaller().fromCsv(data))
+            },
+            error: errorCallback
+        })   
+}
 }

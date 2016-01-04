@@ -3,20 +3,12 @@ var currentCard
 var progressbarCreated = false;
 
 $(document).ready(function() {
-    $("#button-load-csv").click(function() {
-        $.ajax({
-            type: "GET",
-            url: $('#input-csv-url').val(),
-            dataType: "text",
-            success: function(data) {dataReceived(data)},
-            error: function() {errorLoadingCsv()}
-        }) 
-    })
-    $("#button-show-card-front").click(function() {showCurrentFront()})
-    $("#button-show-card-back").click(function() {showCurrentBack()})
-    $("#button-next").click(function() {next()})
-    $("#button-shuffel-deck").click(function() {shuffelDeck()})
-    $("#button-swap-deck").click(function() {swapDeck()})
+    $("#button-load-csv").click(loadCsv)
+    $("#button-show-card-front").click(showCurrentFront)
+    $("#button-show-card-back").click(showCurrentBack)
+    $("#button-next").click(next)
+    $("#button-shuffel-deck").click(shuffelDeck)
+    $("#button-swap-deck").click(swapDeck)
 });
 
 //Algorithm found: http://stackoverflow.com/revisions/16732728/2
@@ -35,6 +27,10 @@ $(document).on('pagebeforeshow', '#card-front', function(){
 
 });
 
+function loadCsv() {
+    new DeckUnmarshaller().fromCsvUrl($('#input-csv-url').val(), dataReceived, errorLoadingCsv)
+}
+
 function next() {
     currentCard = deck.getNextCard()
     showCurrentFront()
@@ -43,8 +39,8 @@ function next() {
     $("#slider-progress").slider("refresh");
 }
 
-function dataReceived(csv) {
-    deck = new DeckUnmarshaller().fromCsv(csv)
+function dataReceived(data) {
+    deck = data
     next()
 }
 
