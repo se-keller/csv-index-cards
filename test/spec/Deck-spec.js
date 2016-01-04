@@ -13,7 +13,7 @@ describe("Deck", function() {
     expect(deck.getNextCard()).toEqual(card)
   });
 
-  it("can added multiple cards to draw card in added order", function() {
+  it("can add multiple cards to draw card in added order", function() {
     var secondcard = new Card("question2", "answer2")
     
     deck.add(secondcard)
@@ -28,7 +28,7 @@ describe("Deck", function() {
     expect(deck.getNextCard()).toEqual(card)
   });
 
-  it("can declare label for front a back of all cards", function() {
+  it("can define label for front a back of all cards", function() {
     expect(deck.getFrontLabel()).toEqual("Question")
     expect(deck.getBackLabel()).toEqual("Answer")
   });
@@ -38,7 +38,7 @@ describe("Deck", function() {
     expect(deck.size()).toEqual(2)
   });
 
-  it("can swap the Question and Answer direction", function() {
+  it("can swap the whole deck and front and back label", function() {
     deck.swap()
 
     expect(deck.getFrontLabel()).toEqual("Answer")
