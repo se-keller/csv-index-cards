@@ -9,23 +9,25 @@ describe("Deck", function() {
     deck.add(card)
   });
 
-  it("can add card to draw card", function() {
-    expect(deck.getNextCard()).toEqual(card)
+  it("can peek at the top card in the deck", function() {
+    expect(deck.top()).toEqual(card)
   });
+
 
   it("can add multiple cards to draw card in added order", function() {
     var secondcard = new Card("question2", "answer2")
     
     deck.add(secondcard)
-    deck.getNextCard()
+    deck.draw()
 
-    expect(deck.getNextCard()).toEqual(secondcard)
+    expect(deck.top()).toEqual(secondcard)
   });
 
-  it("starts at the beginning after all cards are drawn", function() {
-    deck.getNextCard()
 
-    expect(deck.getNextCard()).toEqual(card)
+  it("starts at the beginning after all cards are drawn", function() {
+    deck.draw()
+
+    expect(deck.top()).toEqual(card)
   });
 
   it("can define label for front a back of all cards", function() {
@@ -43,13 +45,13 @@ describe("Deck", function() {
 
     expect(deck.getFrontLabel()).toEqual("Answer")
     expect(deck.getBackLabel()).toEqual("Question")
-    expect(deck.getNextCard().getFront()).toEqual("answer")
-    expect(deck.getNextCard().getBack()).toEqual("question")
+    expect(deck.top().getFront()).toEqual("answer")
+    expect(deck.top().getBack()).toEqual("question")
   });
 
   it("can calculate the number of cards already drawn", function() {
     deck.add(new Card("question2", "answer2"))
-    deck.getNextCard()
+    deck.draw()
     expect(deck.currentProgress()).toEqual(1)
   });
 

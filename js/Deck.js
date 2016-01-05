@@ -9,10 +9,16 @@ function Deck () {
         this.cards.push(card)
     }
 
-    this.getNextCard = function() {
-    	if(this.currentCard > this.cards.length-1)
+    this.top = function() {
+        return this.cards[this.currentCard]
+    }
+
+    this.draw = function() {
+    	if(this.currentCard >= this.cards.length-1) {
         	this.currentCard = 0
-        return this.cards[this.currentCard++]
+        } else {
+            this.currentCard++
+        }
     }
 
     this.setLabels = function(front, back) {

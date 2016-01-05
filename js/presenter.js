@@ -1,5 +1,4 @@
 var deck
-var currentCard
 var progressbarCreated = false;
 
 $(document).ready(function() {
@@ -31,28 +30,28 @@ function loadCsv() {
     new DeckUnmarshaller().fromCsvUrl($('#input-csv-url').val(), dataReceived, errorLoadingCsv)
 }
 
+function dataReceived(data) {
+    deck = data
+    next()
+}
+
 function next() {
-    currentCard = deck.getNextCard()
+    deck.draw()
     showCurrentFront()
     $("#slider-progress").attr("max", deck.size())
     $("#slider-progress").val(deck.currentProgress())
     $("#slider-progress").slider("refresh");
 }
 
-function dataReceived(data) {
-    deck = data
-    next()
-}
-
 function showCurrentFront() {
     $("#card-front-label").text(deck.getFrontLabel())
-    $("#card-front-value").text(currentCard.getFront())
+    $("#card-front-value").text(deck.top().getFront())
     $.mobile.changePage( "#card-front", { transition: "flip", changeHash: true });
 }
 
 function showCurrentBack() {
     $("#card-back-label").text(deck.getBackLabel())
-    $("#card-back-value").text(currentCard.getBack())
+    $("#card-back-value").text(deck.top().getBack())
     $.mobile.changePage( "#card-back", { transition: "flip", changeHash: false });
 }
 
