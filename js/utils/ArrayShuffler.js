@@ -6,3 +6,8 @@ var ArrayShuffler = function(randomizer) {
     	return arr;
 	}
 }
+
+// var copy = arr.slice()
+// var i = arr.indexOf(item)
+// if(i != -1)
+//   array.splice(i,1);
