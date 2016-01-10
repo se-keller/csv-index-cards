@@ -13,7 +13,7 @@ function CsvLoadPage() {
 
     this.fillCsvUrlWithLocalTestCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "test/unit/resources/example.csv");
+            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv");
         })
     }
 
