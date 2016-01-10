@@ -12,23 +12,23 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('Can flip from question to answer', 1, function suite(test) {
+casper.test.begin('GIVEN a question is shown WHEN flip THEN answer is shown', 1, function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
     
-    questionPage.showBackOfCard()
+    questionPage.showAnswer()
     
-    answerPage.checkThatCardBackIsShown()
+    answerPage.checkThatAnswerIsShown()
     
     done(test)
 });
 
-casper.test.begin('Can flip answer to question', 1, function suite(test) {
-    csvLoadPage.startWithLoadedTestCsv()
-    
-    questionPage.showBackOfCard()
-    answerPage.showFrontOfCard()
+casper.test.begin('GIVEN an answer is shown WHEN flip THEN question is shown', 1, function suite(test) {
+    csvLoadPage.startWithLoadedTestCsv()    
+    questionPage.showAnswer()
 
-    questionPage.checkThatCardFrontIsShown()
+    answerPage.showQuestion()
+
+    questionPage.checkThatQuestionIsShown()
     
     done(test)
 });

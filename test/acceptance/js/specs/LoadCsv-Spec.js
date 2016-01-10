@@ -10,18 +10,18 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('Can load a local CSV file', 1, function suite(test) {
+casper.test.begin('GIVEN a readable csv url WHEN loading THEN first question is shown', 1, function suite(test) {
     csvLoadPage.startOnCsvLoadPage()
     csvLoadPage.fillCsvUrlWithLocalTestCsvUrl()
 
     csvLoadPage.loadCsv()
     
-    questionPage.checkThatCardFrontIsShown()
+    questionPage.checkThatQuestionIsShown()
 
     done(test)   
 });
 
-casper.test.begin('Cannot load CSV file, shows error message', 1, function suite(test) {
+casper.test.begin('GIVEN an unreadable csv url WHEN loading THEN error message is shown', 1, function suite(test) {
     csvLoadPage.startOnCsvLoadPage()
     csvLoadPage.fillCsvUrlWithUnloadableCsvUrl()
 

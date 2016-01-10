@@ -8,7 +8,6 @@ function CsvLoadPage() {
     }
 
     this.startOnCsvLoadPage = function() {
-        casper.echo("Trying to load from url:" + url)
         casper.start(url)
     }
 

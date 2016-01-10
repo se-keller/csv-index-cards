@@ -1,11 +1,11 @@
 function AnswerPage() {
-	 this.showFrontOfCard = function() {
+	 this.showQuestion = function() {
         casper.then(function() {
             casper.click("#button-show-card-front")
         })
     }
 
-    this.checkThatCardBackIsShown = function(){
+    this.checkThatAnswerIsShown = function(){
         casper.then(function() {
             casper.waitUntilVisible('#card-back', function() {
                 casper.test.assertVisible('#card-back-value');
