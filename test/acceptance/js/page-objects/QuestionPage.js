@@ -44,4 +44,25 @@ function QuestionPage() {
             
         })	
     }
+
+    this.checkThatAnswerIsShownAsQuestion = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.test.assertSelectorHasText('#card-front-value', 'answer1');
+            })
+            
+        })  
+    }
+
+    this.checkThatProgressIsResetted = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                var val = casper.evaluate(function(){
+                    return $('#slider-progress').val()
+                })
+                casper.test.assertEqual(val, "1");
+            })
+            
+        })   
+    }
 }
