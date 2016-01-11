@@ -5,6 +5,14 @@ function Deck () {
     this.backLabel = "Answer"
     this.shuffler = new ArrayShuffler(Math)
 
+    var fromArray = function(arr) {
+        var deck = new Deck()
+        for(var i = 0; i < arr.length; i++) {
+            deck.add(arr[i])
+        }
+        return deck
+    }
+
     this.add = function(card) {
         this.cards.push(card)
     }
@@ -54,5 +62,16 @@ function Deck () {
 
     this.currentProgress = function() {
     	return this.currentCard
+    }
+
+    this.shuffeldRest = function() {
+        var cardsCopy = this.cards.slice()
+        cardsCopy.splice(this.currentCard,1)
+        cardsCopy = this.shuffler.shuffel(cardsCopy)
+        return fromArray(cardsCopy)
+    }
+
+    this.includes = function(card) {
+        return this.cards.includes(card)
     }
 }

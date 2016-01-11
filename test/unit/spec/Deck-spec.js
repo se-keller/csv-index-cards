@@ -55,4 +55,18 @@ describe("Deck", function() {
     expect(deck.currentProgress()).toEqual(1)
   });
 
+  it("can get rest of deck in random order", function() {
+    var card2 = new Card("question2", "answer2")
+    var card3 = new Card("question3", "answer3")
+    deck.add(card2)
+    deck.add(card3)
+    deck.draw()
+
+    var rest = deck.shuffeldRest();
+
+    expect(rest.includes(card)).toBe(true)
+    expect(rest.includes(card2)).toBe(false)
+    expect(rest.includes(card3)).toBe(true)
+  });
+
 });

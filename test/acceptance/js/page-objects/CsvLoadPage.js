@@ -1,5 +1,6 @@
 function CsvLoadPage() {
-    var url = "file:///Users/sebastiankeller/devenv/sources/github/csv-index-cards/index.html" //"http://se-keller.github.io/csv-index-cards"
+    var url = "file:///Users/sebastiankeller/devenv/sources/github/csv-index-cards/index.html" 
+    //var url = "http://se-keller.github.io/csv-index-cards/index.html"
     
     this.startWithLoadedTestCsv = function() {
         this.startOnCsvLoadPage()
