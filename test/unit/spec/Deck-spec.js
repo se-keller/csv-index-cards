@@ -4,7 +4,7 @@ describe("Deck", function() {
 
   beforeEach(function() {
     deck = new Deck()
-    deck.setLabels("Question", "Answer")
+    deck.setHeaders("Question Header", "Answer Header")
     card = new Card("question", "answer")
     deck.add(card)
   });
@@ -31,8 +31,8 @@ describe("Deck", function() {
   });
 
   it("can define label for front a back of all cards", function() {
-    expect(deck.getFrontLabel()).toEqual("Question")
-    expect(deck.getBackLabel()).toEqual("Answer")
+    expect(deck.frontHeader()).toEqual("Question Header")
+    expect(deck.backHeader()).toEqual("Answer Header")
   });
 
   it("can calculate the number of cards in the deck", function() {
@@ -43,8 +43,8 @@ describe("Deck", function() {
   it("can swap the whole deck and front and back label", function() {
     deck.swap()
 
-    expect(deck.getFrontLabel()).toEqual("Answer")
-    expect(deck.getBackLabel()).toEqual("Question")
+    expect(deck.frontHeader()).toEqual("Answer Header")
+    expect(deck.backHeader()).toEqual("Question Header")
     expect(deck.top().getFront()).toEqual("answer")
     expect(deck.top().getBack()).toEqual("question")
   });
@@ -53,20 +53,6 @@ describe("Deck", function() {
     deck.add(new Card("question2", "answer2"))
     deck.draw()
     expect(deck.currentProgress()).toEqual(1)
-  });
-
-  it("can get rest of deck in random order", function() {
-    var card2 = new Card("question2", "answer2")
-    var card3 = new Card("question3", "answer3")
-    deck.add(card2)
-    deck.add(card3)
-    deck.draw()
-
-    var rest = deck.shuffeldRest();
-
-    expect(rest.includes(card)).toBe(true)
-    expect(rest.includes(card2)).toBe(false)
-    expect(rest.includes(card3)).toBe(true)
   });
 
 });

@@ -31,13 +31,13 @@ function next() {
 }
 
 function showCurrentFront() {
-    $("#card-front-label").text(deck.getFrontLabel())
+    $("#card-front-label").text(deck.frontHeader())
     $("#card-front-value").text(deck.top().getFront())
     $.mobile.changePage( "#card-front", { transition: "flip", changeHash: true });
 }
 
 function showCurrentBack() {
-    $("#card-back-label").text(deck.getBackLabel())
+    $("#card-back-label").text(deck.backHeader())
     $("#card-back-value").text(deck.top().getBack())
     $.mobile.changePage( "#card-back", { transition: "flip", changeHash: false });
 }
