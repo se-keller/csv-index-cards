@@ -12,21 +12,22 @@
 		<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
 		<link rel="icon" href="images/favicon.png" type="image/png" />
 		<link rel="apple-touch-icon" href="images/icon.png" />
-		
+		<!-- -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-
-		<!--<script src="test/unit/libs/jquery/2.1.4/jquery.min.js"></script>
+		<!-- 
+		<script src="test/unit/libs/jquery/2.1.4/jquery.min.js"></script>
 		<link rel="stylesheet" href="test/unit/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-		<script src="test/unit/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>-->
-
+		<script src="test/unit/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+		-->
 		<script src="js/utils/ArrayShuffler.js"></script>
 		<script src="js/utils/CsvSplitter.js"></script>
 		<script src="js/ProgressBar.js"></script>
 		<script src="js/Card.js"></script>
 		<script src="js/Deck.js"></script>
 		<script src="js/DeckUnmarshaller.js"></script>
+		<script src="js/MultipleChoice.js"></script>
 		<script src="js/presenter.js"></script>
 	</head>
 	<body>
@@ -72,6 +73,42 @@
 			</div>
 			<div data-role="footer" data-position="fixed">
 				<div id ="div-slider-progress"></div>
+			</div>
+		</div>
+
+		<div data-role="page" id="multiple-choice">
+			<div data-role="panel" id="menu" data-position="right">
+				<ul data-role="listview" data-inset="false">
+					<li><a  id="button-shuffel-deck-multiple-choice" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
+					<li><a  id="button-swap-deck-multiple-choice" type="button" data-role="button" data-rel="close">Swap deck</a></li>
+				</ul>
+			</div>
+			<div data-role="header">
+				<a href="#" data-rel="back"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
+				<a href="#menu" id="button-menu"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-right ui-btn-icon-notext">Menu</a>
+				<h1 id="choice-label">CSV Index Cards</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<h1 align="center" id="choice-question">Question</h1>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="button-answer1" type="button" class="ui-btn ui-shadow ui-corner-all">Answer 1</a>
+					</div>
+					<div class="ui-block-b">
+						<a id="button-answer2" type="button" class="ui-btn ui-shadow ui-corner-all">Answer 2</a>
+					</div>
+					<div class="ui-block-a">
+						<a id="button-answer3" type="button" class="ui-btn ui-shadow ui-corner-all">Answer 3</a>
+					</div>
+					<div class="ui-block-b">
+						<a id="button-answer4" type="button" class="ui-btn ui-shadow ui-corner-all">Answer 4</a>
+					</div>
+				</fieldset>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div id ="div-slider-progress-multiple-choice"></div>
 			</div>
 		</div>
 		

@@ -1,5 +1,7 @@
 var deck
 var progressBar
+var progressBarMultipleChoice
+var multipleChoice
 
 $(document).ready(function() {
     $("#button-load-csv").click(loadCsv)
@@ -8,7 +10,14 @@ $(document).ready(function() {
     $("#button-next").click(next)
     $("#button-shuffel-deck").click(shuffelDeck)
     $("#button-swap-deck").click(swapDeck)
+    $("#button-shuffel-deck-multiple-choice").click(shuffelDeckMultipleChoice)
+    $("#button-swap-deck-multiple-choice").click(swapDeckMultipleChoice)
+    $("#button-answer1").click(function() {checkMultipleChoice($("#button-answer1").text())})
+    $("#button-answer2").click(function() {checkMultipleChoice($("#button-answer2").text())})
+    $("#button-answer3").click(function() {checkMultipleChoice($("#button-answer3").text())})
+    $("#button-answer4").click(function() {checkMultipleChoice($("#button-answer4").text())})
     progressBar = new ProgressBar("#card-front", "#div-slider-progress", "slider-progress")
+    progressBarMultipleChoice = new ProgressBar("#multiple-choice", "#div-slider-progress-multiple-choice", "slider-multiple-choice")
 });
 
 
@@ -18,9 +27,15 @@ function loadCsv() {
 
 function dataReceived(data) {
     deck = data
+    
     showCurrentFront()
     progressBar.max(deck.size())
     progressBar.val(progressVal())
+
+    
+    //showChoice()
+    progressBarMultipleChoice.max(deck.size())
+    progressBarMultipleChoice.val(progressVal())
 }
 
 function next() {
@@ -28,6 +43,26 @@ function next() {
     showCurrentFront()
     progressBar.val(progressVal())
     
+}
+
+function showChoice() {
+    multipleChoice = new MultipleChoice(deck)
+    var choices = multipleChoice.choices();
+    $("#button-answer1").text(choices.pop())
+    $("#button-answer2").text(choices.pop())
+    $("#button-answer3").text(choices.pop())
+    $("#button-answer4").text(choices.pop())
+
+    $("#choice-label").text(deck.frontHeader())
+    $("#choice-question").text(deck.top().getFront())
+    $.mobile.changePage( "#multiple-choice", { transition: "flip", changeHash: true });
+}
+function checkMultipleChoice(answer) {
+    if(multipleChoice.checkSameAnswer(answer)) {
+        deck.draw()
+        showChoice()
+        progressBarMultipleChoice.val(progressVal())
+    }
 }
 
 function showCurrentFront() {
@@ -44,13 +79,25 @@ function showCurrentBack() {
 
 function shuffelDeck() {
     deck.shuffel()
+    
     showCurrentFront()
     progressBar.val(progressVal())
+}
+
+function shuffelDeckMultipleChoice() {
+    deck.shuffel()
+    showChoice()
+    progressBarMultipleChoice.val(progressVal())   
 }
 
 function swapDeck() {
     deck.swap()
     showCurrentFront()
+}
+
+function swapDeckMultipleChoice() {
+    deck.swap()
+    showChoice()
 }
 
 function progressVal() {
