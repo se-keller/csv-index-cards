@@ -17,19 +17,25 @@ describe("MultipleChoice", function() {
     multipleChoice = new MultipleChoice(deck)
   });
 
-  it("can get a choice of 4 cards containing the current top card", function() {
+  it("can get a choice of 4 answers containing the current top card answer", function() {
     var choices = multipleChoice.choices()
 
-    expect(choices.includes(topCard)).toEqual(true)
-    expect(choices.size()).toEqual(4)
+    expect(choices.includes(topCard.getBack())).toEqual(true)
+    expect(choices.length).toEqual(4)
   });
 
-  it("can get a choice of 4 cards after a draw containing the new current top card (second card)", function() {
+  it("can get a choice of 4 answers after a draw containing the new current top card answer (second card)", function() {
     deck.draw()
 
     var choices = multipleChoice.choices()
     
-    expect(choices.includes(secondCard)).toEqual(true)
-    expect(choices.size()).toEqual(4)
+    expect(choices.includes(secondCard.getBack())).toEqual(true)
+    expect(choices.length).toEqual(4)
   });
+
+  it("can check if a answer has the same answer as the top card of the deck", function() {
+    expect(multipleChoice.checkSameAnswer(topCard.getBack())).toEqual(true)
+    expect(multipleChoice.checkSameAnswer(secondCard.getBack())).toEqual(false)
+  });  
+
 })
