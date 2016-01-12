@@ -12,10 +12,10 @@ $(document).ready(function() {
     $("#button-swap-deck").click(swapDeck)
     $("#button-shuffel-deck-multiple-choice").click(shuffelDeckMultipleChoice)
     $("#button-swap-deck-multiple-choice").click(swapDeckMultipleChoice)
-    $("#button-answer1").click(function() {checkMultipleChoice($("#button-answer1").text())})
-    $("#button-answer2").click(function() {checkMultipleChoice($("#button-answer2").text())})
-    $("#button-answer3").click(function() {checkMultipleChoice($("#button-answer3").text())})
-    $("#button-answer4").click(function() {checkMultipleChoice($("#button-answer4").text())})
+    $("#button-answer1").click(function() {checkMultipleChoice($("#button-answer1"))})
+    $("#button-answer2").click(function() {checkMultipleChoice($("#button-answer2"))})
+    $("#button-answer3").click(function() {checkMultipleChoice($("#button-answer3"))})
+    $("#button-answer4").click(function() {checkMultipleChoice($("#button-answer4"))})
     progressBar = new ProgressBar("#card-front", "#div-slider-progress", "slider-progress")
     progressBarMultipleChoice = new ProgressBar("#multiple-choice", "#div-slider-progress-multiple-choice", "slider-multiple-choice")
 });
@@ -49,19 +49,30 @@ function showChoice() {
     multipleChoice = new MultipleChoice(deck)
     var choices = multipleChoice.choices();
     $("#button-answer1").text(choices.pop())
+    $("#button-answer1").removeAttr('style')
     $("#button-answer2").text(choices.pop())
+    $("#button-answer2").removeAttr('style')
     $("#button-answer3").text(choices.pop())
+    $("#button-answer3").removeAttr('style')
     $("#button-answer4").text(choices.pop())
+    $("#button-answer4").removeAttr('style')
 
     $("#choice-label").text(deck.frontHeader())
     $("#choice-question").text(deck.top().getFront())
     $.mobile.changePage( "#multiple-choice", { transition: "flip", changeHash: true });
 }
-function checkMultipleChoice(answer) {
+function checkMultipleChoice(button) {
+    var answer = button.text()
     if(multipleChoice.checkSameAnswer(answer)) {
-        deck.draw()
-        showChoice()
-        progressBarMultipleChoice.val(progressVal())
+        button.css("background", "#CCF6EC") 
+        setTimeout(function() {
+            deck.draw()
+            showChoice()
+            progressBarMultipleChoice.val(progressVal())    
+        }, 500);
+        
+    } else {
+        button.css("background", "#FFDCDC")
     }
 }
 

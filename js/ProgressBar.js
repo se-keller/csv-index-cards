@@ -12,7 +12,7 @@ var ProgressBar = function(parentSelector, targetSelector, progressBarId) {
 	                $(this).parent().find('.ui-slider-track').css('margin','0 3px 0 3px');
 	                $(this).parent().find('.ui-slider-handle').hide();
 	            }
-	        }).slider("refresh");    
+	        }).slider("refresh")   
 	    } 
 	    this.progressbarCreated = true     	    
 	});	
