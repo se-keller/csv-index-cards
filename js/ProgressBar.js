@@ -1,10 +1,10 @@
 var ProgressBar = function(parentSelector, targetSelector, progressBarId) {
-	this.progressBarId = "#" + progressBarId
-	this.progressbarCreated = false;
+	var progressBarSelector = "#" + progressBarId
+	var progressbarCreated = false;
 
 	//Algorithm found: http://stackoverflow.com/revisions/16732728/2
 	$(document).on('pagebeforeshow', parentSelector, function(){ 
-	    if(!this.progressbarCreated) {
+	    if(!progressbarCreated) {
 	        $('<input>').appendTo(targetSelector).attr({'name':'slider','id':progressBarId,'data-highlight':'true','min':'0','max':'100','value':'50','type':'range'}).slider({
 	            create: function( event, ui ) {
 	                $(this).parent().find('input').hide();
@@ -14,17 +14,17 @@ var ProgressBar = function(parentSelector, targetSelector, progressBarId) {
 	            }
 	        }).slider("refresh")   
 	    } 
-	    this.progressbarCreated = true     	    
+	    progressbarCreated = true     	    
 	});	
 
 	this.max = function(max) {
-    	$(this.progressBarId).attr("max", max)
-    	$(this.progressBarId).slider("refresh")
+    	$(progressBarSelector).attr("max", max)
+    	$(progressBarSelector).slider("refresh")
 	}
 
 	this.val = function(val) {
-	    $(this.progressBarId).val(val)
-	    $(this.progressBarId).slider("refresh");
+	    $(progressBarSelector).val(val)
+	    $(progressBarSelector).slider("refresh");
 	}
 
 }
