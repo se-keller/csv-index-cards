@@ -3,17 +3,17 @@ function MultipleChoice(cardDeck) {
 	var shuffler = new ArrayShuffler(Math)
 
 	this.choices = function() {
-		var choices = []
-		choices.push(cardDeck.top().getBack())
+		var answers = []
+		answers.push(cardDeck.top().getBack())
 
 		var shuffeld = deckWithoutTopShuffeld()
 		
 		for(var i = 0; i < NR_OF_CHOICES-1; i++) {			
-			choices.push(shuffeld.top().getBack())
+			answers.push(shuffeld.top().getBack())
 			shuffeld.draw()
 		}
 		
-		return shuffler.shuffel(choices)
+		return shuffler.shuffel(answers)
 	}
 
 	this.checkSameAnswer = function(answer) {

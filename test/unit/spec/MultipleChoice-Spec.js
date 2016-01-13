@@ -33,6 +33,11 @@ describe("MultipleChoice", function() {
     expect(choices.length).toEqual(4)
   });
 
+  it("will not change the original deck", function() {
+    var choices = multipleChoice.choices()
+    expect(deck.top()).toEqual(topCard)
+  });
+
   it("can check if an answer has the same answer as the top card of the deck", function() {
     expect(multipleChoice.checkSameAnswer(topCard.getBack())).toEqual(true)
     expect(multipleChoice.checkSameAnswer(secondCard.getBack())).toEqual(false)

@@ -63,7 +63,7 @@ describe("Deck", function() {
     expect(deck.currentProgress()).toEqual(0)
   });
 
-  it("can clone the deck so clone can be changed without changing the original deck", function() {
+  it("can clone itself so clone can be changed without changing the original deck", function() {
     var clone = deck.clone()
     clone.remove()
     expect(deck.top()).toEqual(card)

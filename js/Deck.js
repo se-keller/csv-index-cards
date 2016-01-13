@@ -1,23 +1,23 @@
 function Deck () {
-    this.cards = []
-    this.currentCard = 0;
+    var cards = []
+    var currentCard = 0;
     var frontLabel = "Question"
     var backLabel = "Answer"
     var shuffler = new ArrayShuffler(Math)
 
     this.add = function(card) {
-        this.cards.push(card)
+        cards.push(card)
     }
 
     this.top = function() {
-        return this.cards[this.currentCard]
+        return cards[currentCard]
     }
 
     this.draw = function() {
-    	if(this.currentCard >= this.cards.length-1) {
-        	this.currentCard = 0
+    	if(currentCard >= cards.length-1) {
+        	currentCard = 0
         } else {
-            this.currentCard++
+            currentCard++
         }
     }
 
@@ -35,36 +35,41 @@ function Deck () {
     }
 
     this.shuffel = function() {
-    	this.cards = shuffler.shuffel(this.cards)
-    	this.currentCard = 0
+    	cards = shuffler.shuffel(cards)
+    	currentCard = 0
     }
 
     this.swap = function() {
     	var temp = frontLabel
     	frontLabel = backLabel
     	backLabel = temp
-    	for(var i = 0; i < this.cards.length; i++) {
-    		this.cards[i].swap()
+    	for(var i = 0; i < cards.length; i++) {
+    		cards[i].swap()
     	}
     }
 
     this.size = function() {
-    	return this.cards.length
+    	return cards.length
     }
 
     this.currentProgress = function() {
-    	return this.currentCard
+    	return currentCard
     }
 
     this.remove = function() {
-        this.cards.splice(this.currentCard,1)
+        cards.splice(currentCard,1)
     }
 
     this.clone = function() {
-        return $.extend(true, {}, this);
+        var theClone = new Deck()
+        theClone.setHeaders(frontLabel, backLabel)
+        for(var i = 0; i < cards.length; i++) {
+            theClone.add(cards[i])
+        }
+        return theClone;
     }
 
     this.includes = function(card) {
-        return this.cards.includes(card)
+        return cards.includes(card)
     }
 }
