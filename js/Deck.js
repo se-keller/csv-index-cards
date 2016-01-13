@@ -1,9 +1,9 @@
 function Deck () {
     this.cards = []
     this.currentCard = 0;
-    this.frontLabel = "Question"
-    this.backLabel = "Answer"
-    this.shuffler = new ArrayShuffler(Math)
+    var frontLabel = "Question"
+    var backLabel = "Answer"
+    var shuffler = new ArrayShuffler(Math)
 
     this.add = function(card) {
         this.cards.push(card)
@@ -22,27 +22,27 @@ function Deck () {
     }
 
     this.setHeaders = function(front, back) {
-    	this.frontLabel = front
-    	this.backLabel = back
+    	frontLabel = front
+    	backLabel = back
     }
 
     this.frontHeader = function() {
-    	return this.frontLabel
+    	return frontLabel
     }
 
     this.backHeader = function() {
-    	return this.backLabel
+    	return backLabel
     }
 
     this.shuffel = function() {
-    	this.cards = this.shuffler.shuffel(this.cards)
+    	this.cards = shuffler.shuffel(this.cards)
     	this.currentCard = 0
     }
 
     this.swap = function() {
-    	var temp = this.frontLabel
-    	this.frontLabel = this.backLabel
-    	this.backLabel = temp
+    	var temp = frontLabel
+    	frontLabel = backLabel
+    	backLabel = temp
     	for(var i = 0; i < this.cards.length; i++) {
     		this.cards[i].swap()
     	}
@@ -61,7 +61,7 @@ function Deck () {
     }
 
     this.clone = function() {
-        return jQuery.extend(true, {}, this);
+        return $.extend(true, {}, this);
     }
 
     this.includes = function(card) {
