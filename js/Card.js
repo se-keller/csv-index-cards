@@ -1,16 +1,16 @@
 function Card (front, back) {
-    this.front = front
-    this.back = back
+    var front = front
+    var back = back
     this.getFront = function() {
-        return this.front;
+        return front;
     }
     this.getBack = function() {
-        return this.back;
+        return back;
     }
 
     this.swap = function() {
-    	var temp = this.front
-    	this.front = this.back
-    	this.back = temp
+    	var temp = front
+    	front = back
+    	back = temp
     }
 }

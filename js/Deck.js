@@ -56,7 +56,7 @@ function Deck () {
     	return this.currentCard
     }
 
-    this.remove = function(card) {
+    this.remove = function() {
         this.cards.splice(this.currentCard,1)
     }
 

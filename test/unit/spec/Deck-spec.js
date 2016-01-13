@@ -55,4 +55,12 @@ describe("Deck", function() {
     expect(deck.currentProgress()).toEqual(1)
   });
 
+  it("can remove top card of deck", function() {
+    var card2 = new Card("question2", "answer2")
+    deck.add(card2)
+    deck.remove()
+    expect(deck.top()).toEqual(card2)
+    expect(deck.currentProgress()).toEqual(0)
+  });
+
 });
