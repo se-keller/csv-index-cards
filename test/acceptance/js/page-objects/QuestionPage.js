@@ -1,7 +1,10 @@
 function QuestionPage() {
 	this.showAnswer = function() {
         casper.then(function() {
-            casper.click("#button-show-card-back")
+            casper.waitUntilVisible('#card-front', function() {
+                casper.click("#button-show-card-back")
+            })
+            
         })
     }
 
@@ -15,9 +18,9 @@ function QuestionPage() {
     }
 
     this.goToNextQuestion = function() {
-    	casper.then(function() {
+        casper.waitUntilVisible('#card-front', function() {
             casper.click("#button-next")
-        })	
+        })
     }
 
     this.checkThatNextQuestionIsShown = function() {
@@ -64,5 +67,29 @@ function QuestionPage() {
             })
             
         })   
+    }
+
+    this.swapDeck = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.click('#button-menu-flip')
+                casper.waitUntilVisible('#menu-flip', function(){
+                    casper.click("#button-swap-deck")    
+                })
+                casper.waitWhileVisible('#menu-flip')
+            })
+        })
+    }
+
+    this.shuffelDeck = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.click('#button-menu-flip')
+                casper.waitUntilVisible('#menu-flip', function(){
+                    casper.click("#button-shuffel-deck")
+                })
+                casper.waitWhileVisible('#menu-flip')
+            })
+        })
     }
 }

@@ -32,8 +32,10 @@ function showChoice() {
 
     $("#choice-label").text(cardDeck.frontHeader())
     $("#choice-question").text(cardDeck.top().getFront())
-    $.mobile.changePage( "#multiple-choice", { transition: "flip", changeHash: true });
-
+    //$.mobile.changePage( "#multiple-choice", { transition: "slide", changeHash: false, reverse: true });
+    
+    $("#button-show-flip").click(showCurrentFront)
+    
     progressBarMultipleChoice.max(cardDeck.size())
     progressBarMultipleChoice.val(progressVal())
 }
