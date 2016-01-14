@@ -14,7 +14,6 @@ function dataReceived(data) {
     
     showCurrentFront()
     
-    setCardDeck(data)
     //showChoice()
 }
 

@@ -1,6 +1,5 @@
 var progressBarMultipleChoice
 var multipleChoice
-var cardDeck
 
 
 $(document).ready(function() {
@@ -10,16 +9,11 @@ $(document).ready(function() {
     $("#button-answer2").click(function() {checkMultipleChoice($("#button-answer2"))})
     $("#button-answer3").click(function() {checkMultipleChoice($("#button-answer3"))})
     $("#button-answer4").click(function() {checkMultipleChoice($("#button-answer4"))})
-    
+    progressBarMultipleChoice = new ProgressBar("#multiple-choice", "#div-slider-progress-multiple-choice", "slider-multiple-choice")
 });
 
-function setCardDeck(data) {
-    progressBarMultipleChoice = new ProgressBar("#multiple-choice", "#div-slider-progress-multiple-choice", "slider-multiple-choice")
-    cardDeck = data
-}
-
-function showChoice() {
-    multipleChoice = new MultipleChoice(cardDeck)
+function showChoice() {       
+    multipleChoice = new MultipleChoice(deck)
     var choices = multipleChoice.choices();
     $("#button-answer1").text(choices.pop())
     $("#button-answer1").removeAttr('style')
@@ -30,14 +24,13 @@ function showChoice() {
     $("#button-answer4").text(choices.pop())
     $("#button-answer4").removeAttr('style')
 
-    $("#choice-label").text(cardDeck.frontHeader())
-    $("#choice-question").text(cardDeck.top().getFront())
-    //$.mobile.changePage( "#multiple-choice", { transition: "slide", changeHash: false, reverse: true });
-    
-    $("#button-show-flip").click(showCurrentFront)
-    
-    progressBarMultipleChoice.max(cardDeck.size())
-    progressBarMultipleChoice.val(progressVal())
+    $("#choice-label").text(deck.frontHeader())
+    $("#choice-question").text(deck.top().getFront())
+
+    setTimeout(function() {
+        progressBarMultipleChoice.max(deck.size())
+        progressBarMultipleChoice.val(progressVal()) 
+    }, 1);
 }
 
 function checkMultipleChoice(button) {
@@ -45,9 +38,8 @@ function checkMultipleChoice(button) {
     if(multipleChoice.checkSameAnswer(answer)) {
         button.css("background", "#CCF6EC") 
         setTimeout(function() {
-            cardDeck.draw()
-            showChoice()
-            progressBarMultipleChoice.val(progressVal())    
+            deck.draw()
+            showChoice() 
         }, 500);
         
     } else {
@@ -56,11 +48,11 @@ function checkMultipleChoice(button) {
 }
 
 function shuffelDeckMultipleChoice() {
-    cardDeck.shuffel()
+    deck.shuffel()
     showChoice()  
 }
 
 function swapDeckMultipleChoice() {
-    cardDeck.swap()
+    deck.swap()
     showChoice()
 }
