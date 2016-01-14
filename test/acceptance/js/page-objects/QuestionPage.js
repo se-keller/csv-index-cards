@@ -43,6 +43,7 @@ function QuestionPage() {
     	casper.then(function() {
             casper.waitUntilVisible('#card-front', function() {
             	casper.test.assertSelectorHasText('#card-front-value', 'question1');
+                casper.test.assertSelectorHasText('#card-front-label', 'Questions');
             })
             
         })	
@@ -52,6 +53,7 @@ function QuestionPage() {
         casper.then(function() {
             casper.waitUntilVisible('#card-front', function() {
                 casper.test.assertSelectorHasText('#card-front-value', 'answer1');
+                casper.test.assertSelectorHasText('#card-front-label', 'Answers');
             })
             
         })  

@@ -5,10 +5,11 @@ function AnswerPage() {
         })
     }
 
-    this.checkThatAnswerIsShown = function(){
+    this.checkThatFirstAnswerIsShown = function(){
         casper.then(function() {
             casper.waitUntilVisible('#card-back', function() {
-                casper.test.assertVisible('#card-back-value');
+                casper.test.assertSelectorHasText('#card-back-value', 'answer1');
+                casper.test.assertSelectorHasText('#card-back-label', 'Answers');
             })
         })
     }

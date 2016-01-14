@@ -10,7 +10,7 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('GIVEN a readable csv url WHEN loading THEN first question is shown', 1, function suite(test) {
+casper.test.begin('GIVEN a readable csv url WHEN loading THEN first question is shown', function suite(test) {
     csvLoadPage.startOnCsvLoadPage()
     csvLoadPage.fillCsvUrlWithLocalTestCsvUrl()
 
@@ -21,7 +21,7 @@ casper.test.begin('GIVEN a readable csv url WHEN loading THEN first question is 
     done(test)   
 });
 
-casper.test.begin('GIVEN an unreadable csv url WHEN loading THEN error message is shown', 1, function suite(test) {
+casper.test.begin('GIVEN an unreadable csv url WHEN loading THEN error message is shown', function suite(test) {
     csvLoadPage.startOnCsvLoadPage()
     csvLoadPage.fillCsvUrlWithUnloadableCsvUrl()
 

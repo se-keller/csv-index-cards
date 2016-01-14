@@ -10,7 +10,7 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('GIVEN some questions WHEN next THEN next question is shown', 1, function suite(test) {
+casper.test.begin('GIVEN some questions WHEN next THEN next question is shown', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
     
     questionPage.goToNextQuestion()
@@ -20,7 +20,7 @@ casper.test.begin('GIVEN some questions WHEN next THEN next question is shown', 
     done(test)
 });
 
-casper.test.begin('GIVEN the last question WHEN next THEN first question is shown', 1, function suite(test) {
+casper.test.begin('GIVEN the last question WHEN next THEN first question is shown', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
     questionPage.goToLastQuestion()
 

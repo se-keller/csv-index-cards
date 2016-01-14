@@ -12,17 +12,17 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('GIVEN a question is shown WHEN flip THEN answer is shown', 1, function suite(test) {
+casper.test.begin('GIVEN a question is shown WHEN flip THEN first answer is shown', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
     
     questionPage.showAnswer()
     
-    answerPage.checkThatAnswerIsShown()
+    answerPage.checkThatFirstAnswerIsShown()
     
     done(test)
 });
 
-casper.test.begin('GIVEN an answer is shown WHEN flip THEN question is shown', 1, function suite(test) {
+casper.test.begin('GIVEN an answer is shown WHEN flip THEN question is shown', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()    
     questionPage.showAnswer()
 

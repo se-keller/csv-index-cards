@@ -10,7 +10,7 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('GIVEN a question is shown WHEN swap deck THEN the answer is shown as question', 1, function suite(test) {
+casper.test.begin('GIVEN a question is shown WHEN swap deck THEN the answer is shown as question', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
 
     questionPage.swapDeck()

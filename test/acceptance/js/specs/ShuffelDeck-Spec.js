@@ -10,7 +10,7 @@ var done = function(test) {
     });
 }
 
-casper.test.begin('GIVEN the next question is shown WHEN shuffel deck THEN the progress is resetted', 1, function suite(test) {
+casper.test.begin('GIVEN the next question is shown WHEN shuffel deck THEN the progress is resetted', function suite(test) {
     csvLoadPage.startWithLoadedTestCsv()
     questionPage.goToNextQuestion()
     
