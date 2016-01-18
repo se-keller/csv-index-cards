@@ -13,7 +13,7 @@ var done = function(test) {
 }
 
 casper.test.begin('GIVEN a question is shown WHEN flip THEN first answer is shown', function suite(test) {
-    csvLoadPage.startWithLoadedTestCsv()
+    csvLoadPage.startOnFlipMode()
     
     questionPage.showAnswer()
     
@@ -23,7 +23,7 @@ casper.test.begin('GIVEN a question is shown WHEN flip THEN first answer is show
 });
 
 casper.test.begin('GIVEN an answer is shown WHEN flip THEN question is shown', function suite(test) {
-    csvLoadPage.startWithLoadedTestCsv()    
+    csvLoadPage.startOnFlipMode()    
     questionPage.showAnswer()
 
     answerPage.showQuestion()

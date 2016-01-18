@@ -2,7 +2,7 @@ function CsvLoadPage() {
     var url = "file:///Users/sebastiankeller/devenv/sources/github/csv-index-cards/index.html" 
     //var url = "http://se-keller.github.io/csv-index-cards/index.html"
     
-    this.startWithLoadedTestCsv = function() {
+    this.startOnFlipMode = function() {
         this.startOnCsvLoadPage()
         this.fillCsvUrlWithLocalTestCsvUrl()
         this.loadCsv()
@@ -10,6 +10,19 @@ function CsvLoadPage() {
 
     this.startOnCsvLoadPage = function() {
         casper.start(url)
+    }
+
+    this.startOnMultipleChoiceMode = function() {
+        this.startOnFlipMode()
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.click('#button-menu-flip')
+                casper.waitUntilVisible('#menu-flip', function(){
+                    casper.click("#button-show-multiple-choice")    
+                })
+                casper.waitWhileVisible('#menu-flip')
+            })
+        })
     }
 
     this.fillCsvUrlWithLocalTestCsvUrl = function() {

@@ -20,14 +20,36 @@ function next() {
 
 function showCurrentFront() {
     $("#card-front-label").text(deck.frontHeader())
-    $("#card-front-value").text(deck.top().getFront())
+    var front = deck.top().getFront()
+    if(front.match(/\.gif/)) {
+        $("#card-front-value").removeAttr('style')
+        $("#card-front-img").removeAttr('style')
+        $("#card-front-value").css("display", "none")
+        $("#card-front-img").attr("src", front)
+    } else {
+        $("#card-front-value").removeAttr('style')
+        $("#card-front-img").removeAttr('style')
+        $("#card-front-img").css("display", "none")
+        $("#card-front-value").text(front)
+    }
     progressBar.max(deck.size())
     progressBar.val(progressVal())
 }
 
 function showCurrentBack() {
     $("#card-back-label").text(deck.backHeader())
-    $("#card-back-value").text(deck.top().getBack())
+    var back = deck.top().getBack()
+    if(back.match(/\.gif/)) {
+        $("#card-back-value").removeAttr('style')
+        $("#card-back-img").removeAttr('style')
+        $("#card-back-value").css("display", "none")
+        $("#card-back-img").attr("src", back)
+    } else {
+        $("#card-back-value").removeAttr('style')
+        $("#card-back-img").removeAttr('style')
+        $("#card-back-img").css("display", "none")
+        $("#card-back-value").text(back)
+    }
 }
 
 function shuffelDeck() {

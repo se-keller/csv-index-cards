@@ -11,7 +11,7 @@ var done = function(test) {
 }
 
 casper.test.begin('GIVEN some questions WHEN next THEN next question is shown', function suite(test) {
-    csvLoadPage.startWithLoadedTestCsv()
+    csvLoadPage.startOnFlipMode()
     
     questionPage.goToNextQuestion()
     
@@ -21,7 +21,7 @@ casper.test.begin('GIVEN some questions WHEN next THEN next question is shown', 
 });
 
 casper.test.begin('GIVEN the last question WHEN next THEN first question is shown', function suite(test) {
-    csvLoadPage.startWithLoadedTestCsv()
+    csvLoadPage.startOnFlipMode()
     questionPage.goToLastQuestion()
 
     questionPage.goToNextQuestion()
