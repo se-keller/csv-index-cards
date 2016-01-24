@@ -1,10 +1,15 @@
 function CsvLoadPage() {
     var url = "file:///Users/sebastiankeller/devenv/sources/github/csv-index-cards/index.html" 
-    //var url = "http://se-keller.github.io/csv-index-cards/index.html"
     
     this.startOnFlipMode = function() {
         this.startOnCsvLoadPage()
         this.fillCsvUrlWithLocalTestCsvUrl()
+        this.loadCsv()
+    }
+
+    this.startOnFlipModeWithImageUrlCsv = function() {
+        this.startOnCsvLoadPage()
+        this.fillCsvUrlWithLocalTestWithImageUrlsCsvUrl()
         this.loadCsv()
     }
 
@@ -29,6 +34,12 @@ function CsvLoadPage() {
         casper.then(function() {
             casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv");
         })
+    }
+
+    this.fillCsvUrlWithLocalTestWithImageUrlsCsvUrl = function() {
+        casper.then(function() {
+            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test-withImageUrls.csv");
+        })   
     }
 
     this.loadCsv = function() {

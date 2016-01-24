@@ -32,6 +32,16 @@ function QuestionPage() {
         })	
     }
 
+    this.checkThatQuestionIsShwonAsImage = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.test.assertVisible('#card-front-img');
+                casper.test.assertNotVisible('#card-front-value');
+            })
+            
+        })  
+    }
+
     this.goToLastQuestion = function() {
     	this.goToNextQuestion()
     	this.goToNextQuestion()
