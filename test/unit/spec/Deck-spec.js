@@ -71,4 +71,10 @@ describe("Deck", function() {
     expect(clone.size()).toEqual(0)
   });
 
+  it("check if a card is included in the deck", function() {
+    expect(deck.includes(deck.top())).toEqual(true)
+    expect(deck.includes(new Card("question", "answer"))).toEqual(true)
+  });
+
+
 });

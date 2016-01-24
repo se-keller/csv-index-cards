@@ -13,4 +13,8 @@ function Card (front, back) {
     	front = back
     	back = temp
     }
+
+    this.equalTo = function(card) {
+        return front === card.getFront() && back === card.getBack()
+    }
 }

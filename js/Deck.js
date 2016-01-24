@@ -70,6 +70,10 @@ function Deck () {
     }
 
     this.includes = function(card) {
-        return cards.includes(card)
+        for(var i = 0; i < cards.length; i++) {
+            if(cards[i].equalTo(card))
+                return true
+        }
+        return false
     }
 }
