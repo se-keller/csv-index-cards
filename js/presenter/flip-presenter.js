@@ -7,7 +7,8 @@ $(document).ready(function() {
     $("#button-next").click(next)
     $("#button-shuffel-deck").click(shuffelDeck)
     $("#button-swap-deck").click(swapDeck)
-    $("#button-show-multiple-choice").click(showChoice)
+    $("#button-show-multiple-choice-from-flip").click(showChoice)
+    $("#button-show-pairs-from-flip").click(showPairs)
     progressBar = new ProgressBar("#card-front", "#div-slider-progress", "slider-progress")
 });
 

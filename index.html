@@ -29,9 +29,11 @@
 		<script src="js/Deck.js"></script>
 		<script src="js/DeckUnmarshaller.js"></script>
 		<script src="js/MultipleChoice.js"></script>
+		<script src="js/Pairs.js"></script>
 		<script src="js/presenter/presenter.js"></script>
 		<script src="js/presenter/flip-presenter.js"></script>
 		<script src="js/presenter/multiplechoice-presenter.js"></script>
+		<script src="js/presenter/pairs-presenter.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="loadcsv">
@@ -53,7 +55,8 @@
 				<ul data-role="listview" data-inset="false">
 					<li><a  id="button-shuffel-deck" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
 					<li><a  id="button-swap-deck" type="button" data-role="button" data-rel="close">Swap deck</a></li>
-					<li><a  id="button-show-multiple-choice"  href="#multiple-choice" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Multiple choice</a></li>
+					<li><a  id="button-show-multiple-choice-from-flip"  href="#multiple-choice" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Multiple choice</a></li>
+					<li><a  id="button-show-pairs-from-flip"  href="#pairs" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Pairs</a></li>
 				</ul>
 			</div>
 			<div data-role="header">
@@ -80,12 +83,26 @@
 			</div>
 		</div>
 
+		<div data-role="page" id="card-back">
+			<div data-role="header">
+				<a href="#loadcsv" data-transition="slide" data-direction="reverse"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
+				<h1 id="card-back-label">CSV Index Cards</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<h1 align="center" id="card-back-value"></h1>
+				<img align="center" id="card-back-img" width="100%"/>
+				<a id="button-show-card-front" href="#card-front" data-transition="flip" data-direction="reverse" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
+			</div>
+		</div>
+
 		<div data-role="page" id="multiple-choice">
 			<div data-role="panel" id="menu-multiplechoice" data-position="right">
 				<ul data-role="listview" data-inset="false">
 					<li><a  id="button-shuffel-deck-multiple-choice" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
 					<li><a  id="button-swap-deck-multiple-choice" type="button" data-role="button" data-rel="close">Swap deck</a></li>
-					<li><a  id="button-show-flip" href="#card-front" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Flip</a></li>
+					<li><a  id="button-show-flip-from-multiple-choice" href="#card-front" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Flip</a></li>
+					<li><a  id="button-show-pairs-from-multiple-choice"  href="#pairs" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Pairs</a></li>
 				</ul>
 			</div>
 			<div data-role="header">
@@ -116,18 +133,37 @@
 				<div id ="div-slider-progress-multiple-choice"></div>
 			</div>
 		</div>
-		
-		<div data-role="page" id="card-back">
+
+		<div data-role="page" id="pairs">
+			<div data-role="panel" id="menu-pairs" data-position="right">
+				<ul data-role="listview" data-inset="false">
+					<li><a  id="button-show-flip-from-pairs" href="#card-front" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Flip</a></li>
+					<li><a  id="button-show-multiple-choice-from-pairs"  href="#multiple-choice" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Multiple choice</a></li>
+				</ul>
+			</div>
 			<div data-role="header">
 				<a href="#loadcsv" data-transition="slide" data-direction="reverse"
 					class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">Back</a>
-				<h1 id="card-back-label">CSV Index Cards</h1>
+				<a href="#menu-pairs" id="button-menu-pairs"
+					class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-right ui-btn-icon-notext">Menu</a>
+				<h1 id="pair-label">CSV Index Cards</h1>
 			</div>
 			<div data-role="main" class="ui-content">
-				<h1 align="center" id="card-back-value"></h1>
-				<img align="center" id="card-back-img" width="100%"/>
-				<a id="button-show-card-front" href="#card-front" data-transition="flip" data-direction="reverse" type="button" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right">Flip</a>
+				<div align="center">
+						<a id="button-pair-value1" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 1</a>
+						<a id="button-pair-value2" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 2</a>
+						<a id="button-pair-value3" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 3</a>
+						<a id="button-pair-value4" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 4</a>
+						<a id="button-pair-value5" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 5</a>
+						<a id="button-pair-value6" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 6</a>
+						<a id="button-pair-value7" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 7</a>
+						<a id="button-pair-value8" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 8</a>
+						<a id="button-pair-value9" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 9</a>
+						<a id="button-pair-value10" type="button" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Value 10</a>
+				</div>
 			</div>
 		</div>
+		
+		
 	</body>
 </html>

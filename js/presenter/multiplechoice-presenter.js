@@ -3,6 +3,8 @@ var multipleChoice
 
 
 $(document).ready(function() {
+    $("#button-show-pairs-from-multiple-choice").click(showPairs)
+    $("#button-show-flip-from-multiple-choice").click(showCurrentFront)
     $("#button-shuffel-deck-multiple-choice").click(shuffelDeckMultipleChoice)
     $("#button-swap-deck-multiple-choice").click(swapDeckMultipleChoice)
     $("#button-answer1").click(function() {checkMultipleChoice($("#button-answer1"))})
