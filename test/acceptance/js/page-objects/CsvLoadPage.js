@@ -23,7 +23,7 @@ function CsvLoadPage() {
             casper.waitUntilVisible('#card-front', function() {
                 casper.click('#button-menu-flip')
                 casper.waitUntilVisible('#menu-flip', function(){
-                    casper.click("#button-show-multiple-choice")    
+                    casper.click("#button-show-multiple-choice-from-flip")    
                 })
                 casper.waitWhileVisible('#menu-flip')
             })
