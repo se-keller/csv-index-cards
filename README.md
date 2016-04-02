@@ -23,5 +23,6 @@ PATH=$PATH:<PATH_TO_CASPERJS>/casperjs/bin:<PATH_TO_PHANTOMJS>/phantomjs
 To run all acceptance tests use the command:
 
 ```
+cd test/acceptance
 casperjs test js/specs
 ```

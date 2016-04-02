@@ -38,7 +38,6 @@ function QuestionPage() {
                 casper.test.assertVisible('#card-front-img');
                 casper.test.assertNotVisible('#card-front-value');
             })
-            
         })  
     }
 

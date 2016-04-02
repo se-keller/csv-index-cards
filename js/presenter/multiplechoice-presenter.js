@@ -27,7 +27,7 @@ function showChoice() {
     $("#button-answer4").removeAttr('style')
 
     $("#choice-label").text(deck.frontHeader())
-    $("#choice-question").text(deck.top().getFront())
+    setCardValue(deck.top().getFront(), "#choice-question", "#choice-question-img")
 
     setTimeout(function() {
         progressBarMultipleChoice.max(deck.size())
