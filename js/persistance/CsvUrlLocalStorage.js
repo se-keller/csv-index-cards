@@ -11,13 +11,13 @@ function CsvUrlLocalStorage () {
     }
 
     this.getAll = function() {
-    	if(localStorage.csvUrls === 'undefined') {
+    	if(localStorage.csvUrls === undefined) {
 			localStorage.csvUrls = JSON.stringify([])
 		}
     	return JSON.parse(localStorage.csvUrls)
     }
 
     this.clear = function() {
-    	localStorage.csvUrls = undefined
+    	localStorage.removeItem("csvUrls")
     }
 }
