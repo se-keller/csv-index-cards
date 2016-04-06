@@ -11,10 +11,7 @@ function loadCsv() {
 
 function dataReceived(data) {
     deck = data
-    
     showCurrentFront()    
-    //showChoice()
-    //showPairs()
 }
 
 function progressVal() {

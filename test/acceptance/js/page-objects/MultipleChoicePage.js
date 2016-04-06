@@ -33,7 +33,7 @@ function MultipleChoicePage() {
         casper.then(function() {
             casper.waitUntilVisible('#multiple-choice', function() {
                 casper.test.assertVisible('#choice-question-img');
-                casper.test.assertNotVisible('#choice-question-img');
+                casper.test.assertNotVisible('#choice-question');
             })
             
         }) 

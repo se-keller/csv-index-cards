@@ -5,8 +5,6 @@ var DeckUnmarshaller = function() {
 		for (var i = 1; i < values.length; i++) {
 			deck.add(new Card(values[i][0], values[i][1]))
 		};
-
-
 		return deck
 	}
 
