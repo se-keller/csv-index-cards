@@ -1,7 +1,13 @@
 var deck
+var csvUrlRepository
 
 $(document).ready(function() {
+	csvUrlRepository = new CsvUrlLocalStorage()
+	if(!csvUrlRepository.isEmpty())
+		$("#input-csv-url").val(csvUrlRepository.getAll()[0])
     $("#button-load-csv").click(loadCsv)
+    
+
 });
 
 
@@ -10,6 +16,7 @@ function loadCsv() {
 }
 
 function dataReceived(data) {
+	csvUrlRepository.add($('#input-csv-url').val())
     deck = data
     showCurrentFront()    
 }

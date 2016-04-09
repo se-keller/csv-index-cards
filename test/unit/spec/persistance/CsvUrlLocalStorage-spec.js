@@ -11,7 +11,7 @@ describe("CsvUrlLocalStorage", function() {
   });
 
   it("is initially empty", function() {
-    expect(repository.getAll()).toEqual([])
+    expect(repository.isEmpty()).toEqual(true)
   });
 
   it("is cleared it is empty", function() {

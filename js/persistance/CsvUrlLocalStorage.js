@@ -17,6 +17,10 @@ function CsvUrlLocalStorage () {
     	return JSON.parse(localStorage.csvUrls)
     }
 
+    this.isEmpty = function() {
+    	return this.getAll().length === 0
+    }
+
     this.clear = function() {
     	localStorage.removeItem("csvUrls")
     }

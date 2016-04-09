@@ -30,6 +30,7 @@
 		<script src="js/DeckUnmarshaller.js"></script>
 		<script src="js/MultipleChoice.js"></script>
 		<script src="js/Pairs.js"></script>
+		<script src="js/persistance/CsvUrlLocalStorage.js"></script>
 		<script src="js/presenter/presenter.js"></script>
 		<script src="js/presenter/flip-presenter.js"></script>
 		<script src="js/presenter/multiplechoice-presenter.js"></script>
@@ -45,7 +46,7 @@
 					<p>Could not load csv. Maybe the url is wrong? Or the csv is not readable.
 					<p>
 				</div>
-				<input type="url" data-clear-btn="true" name="CSV URL" id="input-csv-url" value="examples/english-spanish.csv">
+				<input type="text" data-clear-btn="true" name="CSV URL" id="input-csv-url" value="">
 				<a  id="button-load-csv" data-transition="slide" href="#card-front" type="button" data-role="button">Load csv</a>
 			</div>
 		</div>
