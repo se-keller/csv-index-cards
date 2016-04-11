@@ -29,13 +29,13 @@ function CsvLoadPage() {
 
     this.fillCsvUrlWithLocalTestCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv");
+            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv", { reset: true});
         })
     }
 
     this.fillCsvUrlWithLocalTestWithImageUrlsCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test-withImageUrls.csv");
+            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test-withImageUrls.csv", { reset: true});
         })   
     }
 
@@ -55,7 +55,7 @@ function CsvLoadPage() {
 
     this.fillCsvUrlWithUnloadableCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "Unloadable URL");
+            casper.sendKeys('#input-csv-url', "Unloadable URL", { reset: true});
         })
     }
     
@@ -71,6 +71,25 @@ function CsvLoadPage() {
         })
     }
    
+    this.refresh = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#input-csv-url', function() {
+                casper.reload()
+            })
+        })
+    }
 
+    this.checkCsvUrlIsLocalTestCsvUrl = function() {
+        casper.then(function() {
+                casper.waitUntilVisible('#input-csv-url', function() {
+                    casper.test.assertEquals(
+                        "test/acceptance/resources/test.csv", 
+                        casper.evaluate(function(){
+                            return $("#input-csv-url").val()
+                        })
+                    )
+                })   
+        })
+    }
     
 }

@@ -103,4 +103,12 @@ function QuestionPage() {
             })
         })
     }
+
+    this.back = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.click('#card-front-back')
+            })
+        })
+    }
 }
