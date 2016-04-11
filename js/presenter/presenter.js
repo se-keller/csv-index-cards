@@ -1,6 +1,7 @@
 var deck
 var csvUrlRepository
 
+
 $(document).ready(function() {    
 	csvUrlRepository = new CsvUrlLocalStorage()
 	refreshUsedCsvUrls()
@@ -31,8 +32,10 @@ function refreshUsedCsvUrls() {
     if(!csvUrlRepository.isEmpty()) {
         var csvUrls = csvUrlRepository.getAll()
         $("#input-csv-url").val(csvUrls[0])
+        console.log("Hello")
         $("#csv-urls").empty()
         for(var i=1; i<csvUrls.length; i++) {
+
             $("#csv-urls").append('<li><a id="csv-url-'+ i + '" style="direction:rtl;overflow:auto;" class="ui-btn ui-shadow ui-corner-all" data-transition="slide" href="#card-front" type="button">' + csvUrls[i] +'</a></li>')
             $('#csv-url-'+i).click(function(){
                 $('#input-csv-url').val($(this).text())
@@ -52,6 +55,13 @@ function setCardValue(value, valueSelector, imgSelector) {
     } else {    
         $(imgSelector).css("display", "none")
         $(valueSelector).text(value)
+    }
+}
+
+function refreshUsedCsvUrls() {
+    if(!csvUrlRepository.isEmpty()) {
+        var csvUrls = csvUrlRepository.getAll()
+        $("#input-csv-url").val(csvUrls[0])
     }
 }
 
