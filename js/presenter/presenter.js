@@ -1,7 +1,10 @@
 var deck
+var csvUrlRepository
 
-$(document).ready(function() {
+$(document).ready(function() {    
+    csvUrlRepository = new CsvUrlLocalStorage()
     $("#button-load-csv").click(loadCsv)
+    refreshUsedCsvUrls()
 });
 
 
@@ -10,11 +13,10 @@ function loadCsv() {
 }
 
 function dataReceived(data) {
+    csvUrlRepository.add($('#input-csv-url').val())
     deck = data
     
-    showCurrentFront()    
-    //showChoice()
-    //showPairs()
+    showCurrentFront() 
 }
 
 function progressVal() {
@@ -34,6 +36,13 @@ function setCardValue(value, valueSelector, imgSelector) {
     } else {    
         $(imgSelector).css("display", "none")
         $(valueSelector).text(value)
+    }
+}
+
+function refreshUsedCsvUrls() {
+    if(!csvUrlRepository.isEmpty()) {
+        var csvUrls = csvUrlRepository.getAll()
+        $("#input-csv-url").val(csvUrls[0])
     }
 }
 

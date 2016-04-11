@@ -2,6 +2,9 @@ function QuestionPage() {
 	this.showAnswer = function() {
         casper.then(function() {
             casper.waitUntilVisible('#card-front', function() {
+                casper.log(casper.evaluate(function(){
+                    return $("#input-csv-url").val()
+                }), "error")
                 casper.click("#button-show-card-back")
             })
             

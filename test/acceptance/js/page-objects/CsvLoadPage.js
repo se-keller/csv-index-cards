@@ -29,19 +29,25 @@ function CsvLoadPage() {
 
     this.fillCsvUrlWithLocalTestCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv");
+            casper.waitUntilVisible('#input-csv-url', function() {
+                casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv", { reset: true});
+            })
         })
     }
 
     this.fillCsvUrlWithLocalTestWithImageUrlsCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "test/acceptance/resources/test-withImageUrls.csv");
+            casper.waitUntilVisible('#input-csv-url', function() {
+                casper.sendKeys('#input-csv-url', "test/acceptance/resources/test-withImageUrls.csv", { reset: true});
+            })
         })   
     }
 
     this.loadCsv = function() {
         casper.then(function() {
-            casper.click("#button-load-csv")
+            casper.waitUntilVisible('#input-csv-url', function() {
+                casper.click("#button-load-csv")    
+            })
         })
     }
 
@@ -55,7 +61,9 @@ function CsvLoadPage() {
 
     this.fillCsvUrlWithUnloadableCsvUrl = function() {
         casper.then(function() {
-            casper.sendKeys('#input-csv-url', "Unloadable URL");
+            casper.waitUntilVisible('#input-csv-url', function() {
+                casper.sendKeys('#input-csv-url', "Unloadable URL");
+            })                
         })
     }
     
