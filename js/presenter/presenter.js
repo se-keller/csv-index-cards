@@ -1,10 +1,20 @@
 var deck
 var csvUrlRepository
 
+<<<<<<< HEAD
 $(document).ready(function() {    
     csvUrlRepository = new CsvUrlLocalStorage()
     $("#button-load-csv").click(loadCsv)
     refreshUsedCsvUrls()
+=======
+$(document).ready(function() {
+	csvUrlRepository = new CsvUrlLocalStorage()
+	if(!csvUrlRepository.isEmpty())
+		$("#input-csv-url").val(csvUrlRepository.getAll()[0])
+    $("#button-load-csv").click(loadCsv)
+    
+
+>>>>>>> aaf079758714cf5f9099455791cd30136d78f72e
 });
 
 
@@ -13,10 +23,16 @@ function loadCsv() {
 }
 
 function dataReceived(data) {
+<<<<<<< HEAD
     csvUrlRepository.add($('#input-csv-url').val())
     deck = data
     
     showCurrentFront() 
+=======
+	csvUrlRepository.add($('#input-csv-url').val())
+    deck = data
+    showCurrentFront()    
+>>>>>>> aaf079758714cf5f9099455791cd30136d78f72e
 }
 
 function progressVal() {
