@@ -32,7 +32,6 @@ function refreshUsedCsvUrls() {
     if(!csvUrlRepository.isEmpty()) {
         var csvUrls = csvUrlRepository.getAll()
         $("#input-csv-url").val(csvUrls[0])
-        console.log("Hello")
         $("#csv-urls").empty()
         for(var i=1; i<csvUrls.length; i++) {
 
@@ -55,13 +54,6 @@ function setCardValue(value, valueSelector, imgSelector) {
     } else {    
         $(imgSelector).css("display", "none")
         $(valueSelector).text(value)
-    }
-}
-
-function refreshUsedCsvUrls() {
-    if(!csvUrlRepository.isEmpty()) {
-        var csvUrls = csvUrlRepository.getAll()
-        $("#input-csv-url").val(csvUrls[0])
     }
 }
 
