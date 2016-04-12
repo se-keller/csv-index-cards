@@ -20,3 +20,14 @@ casper.test.begin('GIVEN a new csv has been used WHEN loading the app again THEN
     csvLoadPage.checkCsvUrlIsLocalTestCsvUrl()
     done(test) 
 });
+
+casper.test.begin('GIVEN a csv has been used WHEN another csv has been used THEN the first csv url can be choosen again', function suite(test) {
+    csvLoadPage.startOnFlipMode()
+    questionPage.back()
+    
+    csvLoadPage.startOnFlipModeWithImageUrlCsv()
+    questionPage.back()
+
+    csvLoadPage.checkLocalTestCsvUrlIsChoosable()
+    done(test) 
+});

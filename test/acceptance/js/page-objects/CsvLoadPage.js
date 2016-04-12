@@ -99,5 +99,14 @@ function CsvLoadPage() {
                 })   
         })
     }
+
+    this.checkLocalTestCsvUrlIsChoosable = function() {
+        casper.then(function() {
+                casper.waitUntilVisible('#csv-urls', function() {
+                    casper.test.assertSelectorHasText('#csv-url-1', 'test/acceptance/resources/test.csv');
+                })   
+        })
+
+    }
     
 }
