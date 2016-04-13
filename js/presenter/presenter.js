@@ -5,6 +5,7 @@ var csvUrlRepository
 $(document).ready(function() {    
 	csvUrlRepository = new CsvUrlLocalStorage()
 	refreshUsedCsvUrls()
+    wireInputEnterWithButtonClick('#input-csv-url', '#button-load-csv')
     $("#button-load-csv").click(function(){loadCsv($('#input-csv-url').val())})
 });
 
@@ -55,6 +56,14 @@ function setCardValue(value, valueSelector, imgSelector) {
         $(imgSelector).css("display", "none")
         $(valueSelector).text(value)
     }
+}
+
+function wireInputEnterWithButtonClick(inputSelector, buttonSelector) {
+    $(inputSelector).keypress(function (e) {     
+        if (e.which == '13') {
+            $(buttonSelector).click()
+        }
+    });
 }
 
 function isImageFileUrl(value) {

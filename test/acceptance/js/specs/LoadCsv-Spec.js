@@ -32,3 +32,14 @@ casper.test.begin('GIVEN an unreadable csv url WHEN loading THEN error message i
     done(test)
 });
 
+casper.test.begin('GIVEN a readable csv url WHEN hitting enter THEN the csv is loaded', function suite(test) {
+    csvLoadPage.startOnCsvLoadPage()
+    csvLoadPage.fillCsvUrlWithUnloadableCsvUrl()
+
+    csvLoadPage.hitEnter()
+    
+    questionPage.checkThatQuestionIsShown()
+
+    done(test)
+});
+

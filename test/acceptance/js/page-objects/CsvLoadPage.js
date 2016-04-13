@@ -87,6 +87,14 @@ function CsvLoadPage() {
         })
     }
 
+    this.hitEnter = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#input-csv-url', function() {
+                this.sendKeys('#input-csv-url', casper.page.event.key.Enter);
+            })
+        })   
+    }
+
     this.checkCsvUrlIsLocalTestCsvUrl = function() {
         casper.then(function() {
                 casper.waitUntilVisible('#input-csv-url', function() {

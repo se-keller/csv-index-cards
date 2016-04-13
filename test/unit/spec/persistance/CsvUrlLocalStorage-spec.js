@@ -30,12 +30,6 @@ describe("CsvUrlLocalStorage", function() {
     expect(repository.getAll()).toEqual(["url"])
   });
 
-  it("doubles are not added", function() {
-    repository.add("url")
-    repository.add("url")
-    expect(repository.getAll()).toEqual(["url"])
-  });
-
   it("last added is first item", function() {
     repository.add("url-first")
     repository.add("url-last")
