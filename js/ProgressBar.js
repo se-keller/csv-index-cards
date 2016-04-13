@@ -6,7 +6,6 @@ var ProgressBar = function(parentSelector, targetSelector, progressBarId) {
 	//Algorithm found: http://stackoverflow.com/revisions/16732728/2
 	$(document).on('pagebeforeshow', parentSelector, function(){ 
 	    if(!this.progressbarCreated) {
-	    	$(targetSelector).append('<span id="' + absolutValueId +'"></span>')
 	        $('<input>').appendTo(targetSelector).attr({'name':'slider','id':progressBarId,'data-highlight':'true','min':'0','max':'100','value':'50','type':'range'}).slider({
 	            create: function( event, ui ) {
 	                $(this).parent().find('input').hide();
@@ -15,6 +14,7 @@ var ProgressBar = function(parentSelector, targetSelector, progressBarId) {
 	                $(this).parent().find('.ui-slider-handle').hide();
 	            }
 	        }).slider("refresh")   
+	        $(targetSelector).append('<span id="' + absolutValueId +'"></span>')
 	    } 
 	    this.progressbarCreated = true     	    
 	});	
