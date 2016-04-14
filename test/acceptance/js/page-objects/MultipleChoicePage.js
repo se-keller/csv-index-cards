@@ -38,4 +38,29 @@ function MultipleChoicePage() {
             
         }) 
     }
+
+    this.checkThatAnswersAreShwonAsImage = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#multiple-choice', function() {
+                casper.test.assertVisible('#button-answer1-img');
+                casper.test.assertVisible('#button-answer2-img');
+                casper.test.assertVisible('#button-answer3-img');
+                casper.test.assertVisible('#button-answer4-img');
+            })
+            
+        }) 
+    }
+
+    this.swapDeck = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#multiple-choice', function() {
+                casper.click('#button-menu-multiplechoice')
+                casper.waitUntilVisible('#menu-multiplechoice', function(){
+                    casper.click("#button-swap-deck-multiple-choice")    
+                })
+                casper.waitWhileVisible('#menu-multiplechoice')
+            })
+        })
+    }
+
 }

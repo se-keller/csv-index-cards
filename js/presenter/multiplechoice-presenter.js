@@ -17,14 +17,17 @@ $(document).ready(function() {
 function showChoice() {       
     multipleChoice = new MultipleChoice(deck)
     var choices = multipleChoice.choices();
-    $("#button-answer1").text(choices.pop())
-    $("#button-answer1").removeAttr('style')
-    $("#button-answer2").text(choices.pop())
-    $("#button-answer2").removeAttr('style')
-    $("#button-answer3").text(choices.pop())
-    $("#button-answer3").removeAttr('style')
-    $("#button-answer4").text(choices.pop())
-    $("#button-answer4").removeAttr('style')
+    for(var i = 1; i<=4; i++) {
+        var choice = choices.pop()
+        if(isImageFileUrl(choice)) {
+            $("#button-answer"+i).text("")
+            $("#button-answer"+i).append('<img id="button-answer'+i+'-img" width="100%" src="'+choice+'"/>')
+        } else {
+            $("#button-answer"+i).empty()
+            $("#button-answer"+i).text(choice)    
+        }
+        $("#button-answer"+i).removeAttr('style')
+    }
 
     $("#choice-label").text(deck.frontHeader())
     setCardValue(deck.top().getFront(), "#choice-question", "#choice-question-img")
@@ -37,6 +40,9 @@ function showChoice() {
 
 function checkMultipleChoice(button) {
     var answer = button.text()
+    if(button.has("img").length > 0) {
+        answer = button.find("img").attr("src")
+    }
     if(multipleChoice.checkSameAnswer(answer)) {
         button.css("background", "#CCF6EC") 
         setTimeout(function() {

@@ -111,4 +111,12 @@ function QuestionPage() {
             })
         })
     }
+
+    this.checkThatProgressIndicationIsIncreased = function() {
+        casper.then(function() {
+            casper.waitUntilVisible('#card-front', function() {
+                casper.test.assertSelectorHasText('#slider-progress-absolut', '2/5');
+            })
+        })
+    }
 }
