@@ -59,8 +59,10 @@
 		<div data-role="page" id="card-front">
 			<div data-role="panel" id="menu-flip" data-position="right">
 				<ul data-role="listview" data-inset="false">
+					<li data-role="list-divider">Actions</li>
 					<li><a  id="button-shuffel-deck" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
 					<li><a  id="button-swap-deck" type="button" data-role="button" data-rel="close">Swap deck</a></li>
+					<li data-role="list-divider">Modes</li>
 					<li><a  id="button-show-multiple-choice-from-flip"  href="#multiple-choice" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Multiple choice</a></li>
 					<li><a  id="button-show-pairs-from-flip"  href="#pairs" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Pairs</a></li>
 				</ul>
@@ -109,8 +111,10 @@
 		<div data-role="page" id="multiple-choice">
 			<div data-role="panel" id="menu-multiplechoice" data-position="right">
 				<ul data-role="listview" data-inset="false">
+					<li data-role="list-divider">Actions</li>
 					<li><a  id="button-shuffel-deck-multiple-choice" type="button" data-role="button" data-rel="close">Shuffel deck</a></li>
 					<li><a  id="button-swap-deck-multiple-choice" type="button" data-role="button" data-rel="close">Swap deck</a></li>
+					<li data-role="list-divider">Modes</li>
 					<li><a  id="button-show-flip-from-multiple-choice" href="#card-front" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Flip</a></li>
 					<li><a  id="button-show-pairs-from-multiple-choice"  href="#pairs" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Pairs</a></li>
 				</ul>
@@ -150,6 +154,7 @@
 		<div data-role="page" id="pairs">
 			<div data-role="panel" id="menu-pairs" data-position="right">
 				<ul data-role="listview" data-inset="false">
+				    <li data-role="list-divider">Modes</li>
 					<li><a  id="button-show-flip-from-pairs" href="#card-front" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Flip</a></li>
 					<li><a  id="button-show-multiple-choice-from-pairs"  href="#multiple-choice" data-transition="slide" data-direction="reverse" type="button" data-role="button" data-rel="close">Multiple choice</a></li>
 				</ul>
