@@ -32,12 +32,12 @@ function errorLoadingCsv() {
 function refreshUsedCsvUrls() {
     if(!csvUrlRepository.isEmpty()) {
         var csvUrls = csvUrlRepository.getAll()
-        $("#input-csv-url").val(csvUrls[0])
+       // $("#input-csv-url").val(csvUrls[0])
         $("#csv-urls").empty()
         $("#csv-urls").append('<li data-role="list-divider">Last used</li>')
-        for(var i=1; i<csvUrls.length; i++) {
+        for(var i=0; i<csvUrls.length; i++) {
 
-            $("#csv-urls").append('<li><a id="csv-url-'+ i + '" style="direction:rtl;overflow:auto;" class="ui-btn ui-shadow ui-corner-all" data-transition="slide" href="#card-front" type="button">' + csvUrls[i] +'</a></li>')
+            $("#csv-urls").append('<li><a id="csv-url-'+ (i+1) + '" style="direction:rtl;overflow:auto;" class="ui-btn ui-shadow ui-corner-all" data-transition="slide" href="#card-front" type="button">' + csvUrls[i] +'</a></li>')
             $('#csv-url-'+i).click(function(){
                 $('#input-csv-url').val($(this).text())
                 loadCsv($(this).text())
