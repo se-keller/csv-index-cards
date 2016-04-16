@@ -24,12 +24,24 @@ function showPairs() {
     var choices = pairs.choices();
     foundPairs = 0;
     
+    var hasImgUrl = false
     for(var i = 1 ; i<=NR_CHOICES*2; i++) {
-        $("#button-pair-value" + i).text(choices.pop())
+        var choice = choices.pop()
+        if(isImageFileUrl(choice)) {
+            hasImgUrl = true
+            $("#button-pair-value"+i).text("")
+            $("#button-pair-value"+i).append('<img class="pair-img" height="70em" src="'+choice+'"/>')
+        } else {
+            $("#button-pair-value"+i).empty()
+            $("#button-pair-value"+i).text(choice)
+        }
+
         $("#button-pair-value" + i).removeAttr('style')
         $("#button-pair-value" + i).removeClass('ui-disabled')
     }
-    
+    if(hasImgUrl)
+        $('#pairs-grid').find('a').height($('.pair-img').height());
+
     $("#pair-label").text(deck.frontHeader() + ", " + deck.backHeader())
 
 }
@@ -47,7 +59,15 @@ function checkPair(button) {
     }
          
     if(buttonChoice1 !== undefined && buttonChoice2 !== undefined) {
-        if(pairs.checkPair(buttonChoice1.text(), buttonChoice2.text())) {
+        var first = buttonChoice1.text()
+        if(buttonChoice1.has("img").length > 0) {
+            first = buttonChoice1.find("img").attr("src")
+        }
+        var second = buttonChoice2.text()
+        if(buttonChoice2.has("img").length > 0) {
+            second = buttonChoice2.find("img").attr("src")
+        }
+        if(pairs.checkPair(first, second)) {
             pairIsFound()
         } else {
             noPairIsFound()
@@ -77,8 +97,12 @@ function noPairIsFound() {
 }
 
 function resetSelectedChoices() {
+    var hight1 = buttonChoice1.height()
+    var hight2 = buttonChoice2.height()
     buttonChoice1.removeAttr('style')
     buttonChoice2.removeAttr('style')
+    buttonChoice1.height(hight1)
+    buttonChoice2.height(hight2)
     buttonChoice1 = undefined
     buttonChoice2 = undefined
 }

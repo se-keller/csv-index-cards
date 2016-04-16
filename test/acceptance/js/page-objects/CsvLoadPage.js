@@ -18,6 +18,11 @@ function CsvLoadPage() {
         this.switchFromFlipToMultipleChoice()
     }
 
+    this.startOnPairsModeWithImageUrlCsv = function() {
+        this.startOnFlipModeWithImageUrlCsv()
+        this.switchFromFlipToPairs()   
+    }
+
     this.startOnCsvLoadPage = function() {
         casper.start(url)
     }
@@ -77,6 +82,16 @@ function CsvLoadPage() {
                 casper.waitWhileVisible('#menu-flip')
             })
         })
+    }
+
+    this.switchFromFlipToPairs = function() {
+        casper.waitUntilVisible('#card-front', function() {
+                casper.click('#button-menu-flip')
+                casper.waitUntilVisible('#menu-flip', function(){
+                    casper.click("#button-show-pairs-from-flip")    
+                })
+                casper.waitWhileVisible('#menu-flip')
+            })
     }
    
     this.refresh = function() {
