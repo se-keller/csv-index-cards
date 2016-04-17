@@ -10,7 +10,7 @@ var UrlParamsDecoder = function(url) {
 	}
 
 	this.hasParams = function() {
-		return params.length > 0
+		return !jQuery.isEmptyObject(params)
 	}
 
 	function decode() {

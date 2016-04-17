@@ -1,5 +1,6 @@
 function CsvLoadPage() {
     var url = "file:///Users/sebastiankeller/devenv/sources/github/csv-index-cards/index.html" 
+    var localTestCsvUrl = 'test/acceptance/resources/test.csv'
     
     this.startOnFlipMode = function() {
         this.startOnCsvLoadPage()
@@ -32,10 +33,14 @@ function CsvLoadPage() {
         this.switchFromFlipToMultipleChoice()
     }
 
+    this.startWithCsvUrlParameterOfLocalTestCsvUrl = function() {
+        casper.start(url+'?csv='+localTestCsvUrl)
+    }
+
     this.fillCsvUrlWithLocalTestCsvUrl = function() {
         casper.then(function() {
             casper.waitUntilVisible('#input-csv-url', function() {
-                casper.sendKeys('#input-csv-url', "test/acceptance/resources/test.csv", { reset: true});
+                casper.sendKeys('#input-csv-url', localTestCsvUrl, { reset: true});
             })
         })
     }
@@ -114,7 +119,7 @@ function CsvLoadPage() {
         casper.then(function() {
                 casper.waitUntilVisible('#input-csv-url', function() {
                     casper.test.assertEquals(
-                        "test/acceptance/resources/test.csv", 
+                        localTestCsvUrl, 
                         casper.evaluate(function(){
                             return $("#input-csv-url").val()
                         })
@@ -126,7 +131,7 @@ function CsvLoadPage() {
     this.checkLocalTestCsvUrlIsChoosableFirst = function() {
         casper.then(function() {
                 casper.waitUntilVisible('#csv-urls', function() {
-                    casper.test.assertSelectorHasText('#csv-url-1', 'test/acceptance/resources/test.csv');
+                    casper.test.assertSelectorHasText('#csv-url-1', localTestCsvUrl);
                 })   
         })
 

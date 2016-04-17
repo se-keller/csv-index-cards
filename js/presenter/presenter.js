@@ -1,12 +1,19 @@
 var deck
 var csvUrlRepository
+var urlParamsDecoder
 
 
 $(document).ready(function() {    
 	csvUrlRepository = new CsvUrlLocalStorage()
+    urlParamsDecoder = new UrlParamsDecoder(window.location.href)
 	refreshUsedCsvUrls()
     wireInputEnterWithButtonClick('#input-csv-url', '#button-load-csv')
     $("#button-load-csv").click(function(){loadCsv($('#input-csv-url').val())})
+    if(urlParamsDecoder.hasParams()) {
+        var url = urlParamsDecoder.valueOf("csv")
+        $('#input-csv-url').val(url)
+        loadCsv(url)
+    }
 });
 
 
@@ -18,6 +25,7 @@ function dataReceived(data) {
 	csvUrlRepository.add($('#input-csv-url').val())
     refreshUsedCsvUrls()
     deck = data
+    $.mobile.changePage( "#card-front", { transition: "slide", changeHash: true });
     showCurrentFront()    
 }
 
@@ -32,7 +40,6 @@ function errorLoadingCsv() {
 function refreshUsedCsvUrls() {
     if(!csvUrlRepository.isEmpty()) {
         var csvUrls = csvUrlRepository.getAll()
-       // $("#input-csv-url").val(csvUrls[0])
         $("#csv-urls").empty()
         $("#csv-urls").append('<li data-role="list-divider">Last used</li>')
         for(var i=0; i<csvUrls.length; i++) {
