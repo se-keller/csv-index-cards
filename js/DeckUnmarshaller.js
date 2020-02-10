@@ -22,5 +22,26 @@ var DeckUnmarshaller = function() {
             },
             error: errorCallback
         })   
-}
+	}
+
+	this.fromGoogleSheet = function(jsonUrl, successCallback, errorCallback) {
+		var converter = new GoogleSheetToObjectConverter()
+		try{
+			converter.convertFromUrl(jsonUrl, function(data){
+				var deck = new Deck()
+				var frontHeader = Object.keys(data[1])[0]
+				var backHeader = Object.keys(data[1])[1]
+				deck.setHeaders(frontHeader, backHeader)
+				for (var i in data) {
+					var firstValue = data[i][frontHeader]
+					var secondValue = data[i][backHeader]
+					deck.add(new Card(firstValue, secondValue))
+				}
+				console.log(deck)
+				successCallback(deck)
+			})
+		} catch(e) {
+			errorCallback()
+		}
+	}
 }

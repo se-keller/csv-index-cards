@@ -18,10 +18,14 @@ $(document).ready(function() {
 
 
 function loadCsv(csvUrl) {
-    new DeckUnmarshaller().fromCsvUrl(csvUrl, dataReceived, errorLoadingCsv)
+    if(csvUrl.endsWith("?alt=json"))
+        new DeckUnmarshaller().fromGoogleSheet(csvUrl,dataReceived, errorLoadingCsv)
+    else
+        new DeckUnmarshaller().fromCsvUrl(csvUrl, dataReceived, errorLoadingCsv)
 }
 
 function dataReceived(data) {
+    console.log(data.top)
 	csvUrlRepository.add($('#input-csv-url').val())
     refreshUsedCsvUrls()
     deck = data
